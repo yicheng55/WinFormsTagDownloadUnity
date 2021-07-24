@@ -5,6 +5,8 @@ ScriptsOnlyBuild:
     - Menu
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.Timeline.Editor.dll:
+    - TimelineProjectSettings
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -475,7 +477,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: a3ff5b25e185e2089bb588f377f05e2c
+      Hash: 5c472cafa1aa05768ae2ab65ad41270c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Download
