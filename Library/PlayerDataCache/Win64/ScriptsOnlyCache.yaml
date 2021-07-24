@@ -475,7 +475,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: 5c472cafa1aa05768ae2ab65ad41270c
+      Hash: aed804cbd467409def64ce83022203bb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Download
@@ -575,6 +575,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NewBehaviourScript
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

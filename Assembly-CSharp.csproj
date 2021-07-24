@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{C3F302A6-6B91-5F83-5F3D-60BC50081A59}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -58,6 +59,8 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Menu.cs" />
     <Compile Include="Assets\Script\Download.cs" />
+    <Compile Include="Assets\Script\ClassUtility.cs" />
+    <Compile Include="Assets\Script\NewBehaviourScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Terms of Use End User Lisence Agreement.txt" />
