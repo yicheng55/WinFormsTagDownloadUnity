@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 //using System.Windows.Forms;     //for MessageBox
-using UnityEngine;
 using System.Diagnostics;
+using UnityEditor;
 
 namespace WinFormsTagDownload
 {
@@ -238,26 +236,26 @@ namespace WinFormsTagDownload
             processInfo.RedirectStandardOutput = true;
 
             process = Process.Start(processInfo);
-            string output = process.StandardOutput.ReadToEnd();   //要先輸出.若在畫面輸出的資料量大的時候，Powershell畫面所輸出的資料是會將Buffer寫滿的
+            string output = process.StandardOutput.ReadToEnd();   //要先輸出.若在畫面輸出的資料量大的時候，Powershell畫面所輸出的資料是會將Buffer寫爆的
             process.WaitForExit();
 
             // *** Read the streams ***
             // Warning: This approach can lead to deadlocks, see Edit #2
-            //string output = process.StandardOutput.ReadToEnd();   //若在畫面輸出的資料量大的時候，Powershell畫面所輸出的資料是會將Buffer寫滿的
+            //string output = process.StandardOutput.ReadToEnd();   //若在畫面輸出的資料量大的時候，Powershell畫面所輸出的資料是會將Buffer寫爆的
             string error = process.StandardError.ReadToEnd();
 
 
             exitCode = process.ExitCode;
             if (output.Contains("Reset type NORMAL:"))
             {
-                Console.WriteLine("Can connect to target..........");
+                UnityEngine.Debug.Log("Can connect to target..........");
 
             }
             else
             {
                 exitCode = 2;
                 error = "Fail....";
-                Console.WriteLine("Cannot connect to target....");
+                UnityEngine.Debug.Log("Cannot connect to target....");
             }
 
             //if (output.Contains("O.K"))
@@ -272,9 +270,9 @@ namespace WinFormsTagDownload
             //}
 
             string message = String.Format("error = {0} \r\nexitCode = {1}", (String.IsNullOrEmpty(error) ? "(none)" : error), exitCode);
-            Console.WriteLine("output>>" + (String.IsNullOrEmpty(output) ? "(none)" : output));
-            Console.WriteLine("error>>" + (String.IsNullOrEmpty(error) ? "(none)" : error));
-            Console.WriteLine("ExitCode: " + exitCode.ToString(), "ExecuteCommand");
+            UnityEngine.Debug.Log("output>>" + (String.IsNullOrEmpty(output) ? "(none)" : output));
+            UnityEngine.Debug.Log("error>>" + (String.IsNullOrEmpty(error) ? "(none)" : error));
+            UnityEngine.Debug.Log("ExitCode: " + exitCode.ToString() + "ExecuteCommand");
             //MessageBox.Show(message, "Show...", buttons);
             process.Close();
             return exitCode;
@@ -308,25 +306,27 @@ namespace WinFormsTagDownload
             ////bool containsSearchResult = output.Contains("WinFormsTagDownload");
             //Console.WriteLine($"Contains \"WinFormsTagDownload\"? {containsSearchResult}");
 
+
             exitCode = process.ExitCode;
             if (output.Contains("Reset type NORMAL:"))
             {
-                Console.WriteLine("Can connect to target..........");
+                UnityEngine.Debug.Log("Can connect to target..........");
 
             }
             else
             {
                 exitCode = 2;
-                error = "Fail....";
+                error = "ExecuteCommandTest Fail....";
                 string message = String.Format("error = {0} \r\nexitCode = {1}", (String.IsNullOrEmpty(error) ? "(none)" : error), exitCode);
-                Console.WriteLine("Cannot connect to target....");
+                UnityEngine.Debug.Log("Cannot connect to target....");
+                EditorUtility.DisplayDialog("DialogMsg", message, "Yes");
                 //MessageBox.Show(message, "Show...", buttons);
             }
 
             //string message = String.Format("error = {0} \r\nexitCode = {1}", (String.IsNullOrEmpty(error) ? "(none)" : error), exitCode);
-            Console.WriteLine("output>>" + (String.IsNullOrEmpty(output) ? "(none)" : output));
-            Console.WriteLine("error>>" + (String.IsNullOrEmpty(error) ? "(none)" : error));
-            Console.WriteLine("ExitCode: " + exitCode.ToString(), "ExecuteCommand");
+            UnityEngine.Debug.Log("output>>" + (String.IsNullOrEmpty(output) ? "(none)" : output));
+            UnityEngine.Debug.Log("error>>" + (String.IsNullOrEmpty(error) ? "(none)" : error));
+            UnityEngine.Debug.Log("ExitCode: " + exitCode.ToString() + "ExecuteCommand");
             //MessageBox.Show(message, "Show...", buttons);
             process.Close();
 

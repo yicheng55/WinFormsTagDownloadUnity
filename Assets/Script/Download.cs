@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor;
+using WinFormsTagDownload;
 
 
 public class Download : MonoBehaviour
@@ -48,9 +49,14 @@ public class Download : MonoBehaviour
     private const int NVM_BASE_ReportCnt_ADDR = 0x3EF32;
     private const int NVM_BASE_TempRef_ADDRL = 0x3EE86;
     private const int NVM_BASE_TempRef_ADDRH = 0x3EE87;
+
+    private TClassUtility ClassUtility;
+
     // Start is called before the first frame update
     void Start()
     {
+        ClassUtility = new TClassUtility();
+
         Debug.Log("Start()!!!!!!");
         BinaryFileRead();
     }
@@ -67,9 +73,49 @@ public class Download : MonoBehaviour
 
     }
 
+
+    public void btn_tabP1_Burn1_Click()
+    {
+        int retcode;
+
+        try
+        {
+
+            retcode = ClassUtility.ExecuteCommandTest("dir");
+            //retcode = ClassUtility.ExecuteCommandTest("JLinkConnectTest.bat");
+            if (retcode != 0)
+            {
+                Debug.Log("Down load Fail.... ");
+                //toolStripStatusLabel1.Text = "Down load Fail......";
+                //statusStrip1.Update();
+            }
+            else
+            {
+                ClassUtility.ExecuteCommand("dir");
+                //ClassUtility.ExecuteCommand(textBox1.Text);
+                //toolStripStatusLabel1.Text = "Down load success......";
+                //statusStrip1.Update();
+                Debug.Log("Down load success.... ");
+            }
+
+        }
+        catch (IOException e)
+        {
+            //MessageBoxButtons buttons = MessageBoxButtons.OK;
+            Debug.Log("\nException Caught!");
+            //Debug.Log("Message :{0} ", e.Message);
+            Debug.Log(e.Message + " Cannot read from file.");
+            EditorUtility.DisplayDialog("DialogMsg", e.Message, "Yes");
+
+            return;
+        }
+
+    }
+
+
     public void TestButton()
     {
-        string m_Message;
+        //string m_Message;
         //Debug.Log(textTest.text);
 
         //textTest.text = score.ToString();
@@ -89,7 +135,7 @@ public class Download : MonoBehaviour
         score++;
     }
 
-    public void BinaryFileRead()
+    private void BinaryFileRead()
     {
         //byte[] ByteArray = { 84};
         //byte[] ByteArray = { 84, 104, 105, 115, 32, 105, 115, 32, 101, 120, 97, 109, 112, 108, 101, };
