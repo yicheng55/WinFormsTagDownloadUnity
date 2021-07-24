@@ -5,6 +5,8 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEditor;
+
 
 public class Download : MonoBehaviour
 {
@@ -15,7 +17,14 @@ public class Download : MonoBehaviour
     public InputField tbx_LSHour;
     public InputField tbx_RfChannel;
 
-    int score;
+    public Dropdown mDropWakeUpSec;
+    public Dropdown mDropRptCnt;
+    public Dropdown mDropMaxCnt;
+
+
+    int score, cnt;
+    int mDropWakeUpSecValue;
+
 
     private byte[] readBin;
     private const int TEMPERATURE_NVM_BASE_ADDR = 0x3EE80;
@@ -46,6 +55,11 @@ public class Download : MonoBehaviour
         BinaryFileRead();
     }
 
+    void Update()
+    {
+        //Debug.Log("Update()!!!!!!... " + cnt++);
+    }
+
     public void ExitButton()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
@@ -55,10 +69,24 @@ public class Download : MonoBehaviour
 
     public void TestButton()
     {
-        Debug.Log(textTest.text);
+        string m_Message;
+        //Debug.Log(textTest.text);
+
+        //textTest.text = score.ToString();
+        //Debug.Log(score);
+
+        mDropWakeUpSecValue = mDropWakeUpSec.value;
+        Debug.Log("WakeUpSec = " + mDropWakeUpSecValue);
+
+        //m_Message = mDropWakeUpSec.options[score].text;
+        //Debug.Log("m_Message = " + m_Message);
+
+        //mDropWakeUpSec.captionText.text = mDropWakeUpSec.options[score].text;
+        Debug.Log("mDropWakeUpSec = " + mDropWakeUpSec.captionText.text);
+        Debug.Log("mDropRptCnt = " + mDropRptCnt.captionText.text);
+        Debug.Log("mDropMaxCnt = " + mDropMaxCnt.captionText.text);
+
         score++;
-        textTest.text = score.ToString();
-        Debug.Log(score);
     }
 
     public void BinaryFileRead()
@@ -108,6 +136,7 @@ public class Download : MonoBehaviour
             tbx_RfChannel.text = readBin[NVM_BASE_RfChn_ADDR].ToString();
             //tbx_WakeUp.Text = readBin[NVM_BASE_WakeUp_ADDR].ToString();
             //comboBox1.Text = readBin[NVM_BASE_WakeUp_ADDR].ToString();
+
             tbx_LSMin.text = readBin[NVM_BASE_LSMin_ADDR].ToString();
             tbx_LSHour.text = readBin[NVM_BASE_LSHour_ADDR].ToString();
 
@@ -116,6 +145,11 @@ public class Download : MonoBehaviour
             //cbx_RetryCnt.Text = readBin[NVM_BASE_MaxRetryCount_ADDR].ToString();
 
             //Buffer.BlockCopy(readBin, NVM_BASE_TempRef_ADDR, ByteArray2, 0, 2);
+
+            mDropWakeUpSec.captionText.text = readBin[NVM_BASE_WakeUp_ADDR].ToString();
+            mDropRptCnt.captionText.text = readBin[NVM_BASE_ReportCnt_ADDR].ToString();
+            mDropMaxCnt.captionText.text = readBin[NVM_BASE_MaxRetryCount_ADDR].ToString();
+
             TempRef = (ushort)(readBin[NVM_BASE_TempRef_ADDRH] << 8 | readBin[NVM_BASE_TempRef_ADDRL]);
             dTempRef = TempRef / 10.0;
             string message = String.Format("TempRef = {0}", dTempRef);
@@ -138,7 +172,8 @@ public class Download : MonoBehaviour
             Debug.Log("\nException Caught!");
             //Debug.Log("Message :{0} ", e.Message);
             Debug.Log(e.Message + " Cannot read from file.");
-            //MessageBox.Show(" Cannot read from file....", "Error...", buttons);
+            EditorUtility.DisplayDialog("DialogMsg", e.Message, "Yes");
+
             return;
         }
     }
