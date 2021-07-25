@@ -250,7 +250,14 @@ public class Download : MonoBehaviour
 
             mDropWakeUpSec.captionText.text = readBin[NVM_BASE_WakeUp_ADDR].ToString();
             mDropRptCnt.captionText.text = readBin[NVM_BASE_ReportCnt_ADDR].ToString();
+
             mDropMaxCnt.captionText.text = readBin[NVM_BASE_MaxRetryCount_ADDR].ToString();
+ 
+            Debug.Log("mDropWakeUpSec.captionText.text =" + mDropWakeUpSec.captionText.text);
+            Debug.Log("mDropRptCnt.captionText.text =" + mDropRptCnt.captionText.text);
+
+            Debug.Log("mDropMaxCnt.captionText.text =" + mDropMaxCnt.captionText.text);
+            Debug.Log("readBin[NVM_BASE_MaxRetryCount_ADDR] =" + readBin[NVM_BASE_MaxRetryCount_ADDR].ToString());
 
             TempRef = (ushort)(readBin[NVM_BASE_TempRef_ADDRH] << 8 | readBin[NVM_BASE_TempRef_ADDRL]);
             dTempRef = TempRef / 10.0;
