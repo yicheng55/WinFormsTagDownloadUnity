@@ -59,6 +59,16 @@ public class Download : MonoBehaviour
         ClassUtility = new TClassUtility();
         Debug.Log("Start()!!!!!!");
         textTest.text = "JLinkWrite.bat";
+        tbx_id[0].characterLimit = 2;
+        tbx_id[1].characterLimit = 2;
+        tbx_id[2].characterLimit = 2;
+        tbx_id[3].characterLimit = 2;
+        tbx_id[4].characterLimit = 2;
+
+        tbx_LSMin.characterLimit = 2;
+        tbx_LSHour.characterLimit = 2;
+        tbx_RfChannel.characterLimit = 2;
+
         BinaryFileRead();
     }
 
@@ -188,8 +198,66 @@ public class Download : MonoBehaviour
         Debug.Log("mDropMaxCnt = " + mDropMaxCnt.captionText.text);
 
         score++;
+        tbx_id4_TextChanged();
         btn_tabP1_SaveFile_Click();
     }
+
+
+    public void tbx_id4_TextChanged()
+    {
+        //String valueOne = this.tbx_id4.Text;
+        //int tmp;
+        byte[] TAG_ID = new byte[5];
+        TAG_ID[1] = ClassUtility.HexToByte(tbx_id[1].text);      //tbx_id4.Text
+        TAG_ID[2] = ClassUtility.HexToByte(tbx_id[2].text);      //tbx_id4.Text
+        TAG_ID[3] = ClassUtility.HexToByte(tbx_id[3].text);      //tbx_id4.Text
+        TAG_ID[4] = ClassUtility.HexToByte(tbx_id[4].text);      //tbx_id4.Text
+        TAG_ID[0] = (byte)((TAG_ID[1] + TAG_ID[2] + TAG_ID[3] + ((TAG_ID[4]) & 0xFF)) % 255);
+        tbx_id[0].text = TAG_ID[0].ToString("X2");
+
+        if ((TAG_ID[4] == 0xFF) || TAG_ID[4] == 0x00)
+        {
+            //MessageBoxButtons buttons = MessageBoxButtons.OK;
+            //MessageBox.Show(" Input TAG_ID warning!!! ", "Warning...", buttons);
+        }
+
+
+        //TAG_ID[0] = ClassUtility.HexToByte(tbx_id0.Text);      //tbx_id4.Text
+        //ByteArray[0] = ClassUtility.HexToByte(valueOne);      //tbx_id4.Text
+        /*
+                    readBin[NVM_BASE_TAGID0_ADDR] = TAG_ID[0];
+                    readBin[NVM_BASE_TAGID1_ADDR] = TAG_ID[1];
+                    readBin[NVM_BASE_TAGID2_ADDR] = TAG_ID[2];
+                    readBin[NVM_BASE_TAGID3_ADDR] = TAG_ID[3];
+                    readBin[NVM_BASE_TAGID4_ADDR] = TAG_ID[4];
+        */
+        Debug.Log("Sum: " + TAG_ID[0]);
+    }
+
+    private void button4_Click(object sender, EventArgs e)
+    {
+        int retcode;
+        //ClassUtility.ExecuteCommand(textBox1.Text);
+        Console.WriteLine("ClassUtility.ExecuteCommandTest(JLinkConnectTest.bat);");
+        //ClassUtility.ExecuteCommandTest(textBox1.Text);             //JLinkConnectTest.bat
+        retcode = ClassUtility.ExecuteCommandTest("JLinkConnectTest.bat");             //JLinkConnectTest.bat
+        if (retcode != 0)
+        {
+            //statusStrip1.Text = "Down load Fail.... ";
+            //toolStripStatusLabel1.Text = "Down load Fail......";
+            //statusStrip1.Update();
+            Debug.Log("Down load Fail.... ");
+            //return;
+        }
+        else
+        {
+            //statusStrip1.Text = "Down load success.... ";
+            //toolStripStatusLabel1.Text = "Down load success......";
+            //statusStrip1.Update();
+            Debug.Log("Down load success.... ");
+        }
+    }
+
 
     private void BinaryFileRead()
     {
@@ -197,7 +265,7 @@ public class Download : MonoBehaviour
         //byte[] ByteArray = { 84, 104, 105, 115, 32, 105, 115, 32, 101, 120, 97, 109, 112, 108, 101, };
         byte[] ByteArray = new byte[1];
         //byte[] ByteArray2 = new byte[2];
-        ushort TempRef;
+        short TempRef;
         double dTempRef;
         List<byte> byteSource = new List<byte>();
 
@@ -259,12 +327,12 @@ public class Download : MonoBehaviour
             Debug.Log("mDropMaxCnt.captionText.text =" + mDropMaxCnt.captionText.text);
             Debug.Log("readBin[NVM_BASE_MaxRetryCount_ADDR] =" + readBin[NVM_BASE_MaxRetryCount_ADDR].ToString());
 
-            TempRef = (ushort)(readBin[NVM_BASE_TempRef_ADDRH] << 8 | readBin[NVM_BASE_TempRef_ADDRL]);
+            TempRef = (short)(readBin[NVM_BASE_TempRef_ADDRH] << 8 | readBin[NVM_BASE_TempRef_ADDRL]);
             dTempRef = TempRef / 10.0;
             string message = String.Format("TempRef = {0}", dTempRef);
             Debug.Log(message);
             Debug.Log("AAAA___TempRef =" + dTempRef );
-            tbx_TempRef.text = dTempRef.ToString("00.0");
+            tbx_TempRef.text = dTempRef.ToString("0.0");
 
             /*             Buffer.BlockCopy(readBin, NVM_BASE_TempRef_ADDR, ByteArray2, 0, 2);
                          TempRef = (ushort)(ByteArray2[1] << 8 | ByteArray2[0]);
@@ -340,6 +408,11 @@ public class Download : MonoBehaviour
         TempRef = (ushort)(dTempRef * 10);
         readBin[NVM_BASE_TempRef_ADDRL] = (byte)(TempRef & 0x0000FF);
         readBin[NVM_BASE_TempRef_ADDRH] = (byte)((TempRef >> 8) & 0x0000FF);
+
+        Debug.Log("dTempRef = " + dTempRef);
+        Debug.Log("TempRef = " + TempRef);
+        Debug.Log("TempRef_ADDRL = " + readBin[NVM_BASE_TempRef_ADDRL]);
+        Debug.Log("TempRef_ADDRH = " + readBin[NVM_BASE_TempRef_ADDRH]);
 
         //ByteArray = ClassUtility.HexToByteArray(tbx_Rev.Text);
         //ClassUtility.DumpBytes(ByteArray, ByteArray.Length);
