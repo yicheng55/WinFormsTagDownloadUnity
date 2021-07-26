@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Menu.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\GetInputOnClick.cs" />
     <Compile Include="Assets\Scripts\ClassUtility.cs" />
     <Compile Include="Assets\Scripts\Download.cs" />
   </ItemGroup>
