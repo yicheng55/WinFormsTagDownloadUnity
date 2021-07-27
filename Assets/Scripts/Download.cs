@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEditor;
 //using System.Windows.Forms;
 using WinFormsTagDownload;
-
+using EasyUI.Dialogs;
 
 public class Download : MonoBehaviour
 {
@@ -53,6 +53,8 @@ public class Download : MonoBehaviour
 
     private TClassUtility ClassUtility;
 
+    public GameObject dialogUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +84,16 @@ public class Download : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         SceneManager.LoadScene(0);
 
+    }
+    public void ReturnButton()
+    {
+        //dialogUI.SetActive(true);
+        DialogUI.Instance
+        .SetTitle("Message 1")
+        .SetMessage("Hello James!")
+        .SetButtonColor(DialogButtonColor.Blue)
+        .OnClose(() => Debug.Log("Closed 1"))
+        .Show();
     }
 
 

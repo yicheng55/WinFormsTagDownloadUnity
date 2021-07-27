@@ -57,6 +57,8 @@
     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\ClassUtility.cs" />
     <Compile Include="Assets\Scripts\Download.cs" />
+    <Compile Include="Assets\Scripts\Demo.cs" />
+    <Compile Include="Assets\Scripts\DialogUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Terms of Use End User Lisence Agreement.txt" />
