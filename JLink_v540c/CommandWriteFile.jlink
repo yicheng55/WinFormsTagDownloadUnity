@@ -1,0 +1,9 @@
+si 1
+speed 4000
+r
+h
+loadbin hex.bin 0x0
+
+r
+g
+q

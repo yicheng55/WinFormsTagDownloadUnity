@@ -1,0 +1,12 @@
+si 1
+speed 4000
+r
+h
+
+savebin saverom0.bin 0x00000 0x10000
+savebin saverom1.bin 0x10000 0x10000
+savebin saverom2.bin 0x20000 0x10000
+savebin saverom3.bin 0x30000 0x10000
+r
+g
+q

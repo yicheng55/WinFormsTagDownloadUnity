@@ -1,0 +1,9 @@
+si 1
+speed 4000
+r
+h
+loadbin Master_M8107.bin 0x0
+savebin saverom.bin 0x000000 0x40000
+r
+g
+q

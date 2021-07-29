@@ -69,7 +69,14 @@ public class Download : MonoBehaviour
 
         tbx_LSMin.characterLimit = 2;
         tbx_LSHour.characterLimit = 2;
-        tbx_RfChannel.characterLimit = 2;
+        tbx_RfChannel.characterLimit = 3;
+
+        //string strCmdText;
+        //strCmdText = " /C JLinkConnectTest.bat";   //This command to open a new notepad
+        //System.Diagnostics.Process.Start("CMD.exe", strCmdText);    //Start cmd process
+
+        //strCmdText = "/C notepad";   //This command to open a new notepad
+        //System.Diagnostics.Process.Start("CMD.exe", strCmdText);    //Start cmd process
 
         BinaryFileRead();
     }
@@ -87,7 +94,7 @@ public class Download : MonoBehaviour
     }
     public void ReturnButton()
     {
-        //dialogUI.SetActive(true);
+        dialogUI.SetActive(true);
         DialogUI.Instance
         .SetTitle("Message 1")
         .SetMessage("Hello James!")
@@ -104,21 +111,29 @@ public class Download : MonoBehaviour
         try
         {
 
-            retcode = ClassUtility.ExecuteCommandTest("dir");
-            //retcode = ClassUtility.ExecuteCommandTest("JLinkConnectTest.bat");
+            //retcode = ClassUtility.ExecuteCommandTest("dir");
+            retcode = ClassUtility.ExecuteCommandTest("JLinkConnectTest.bat");
             if (retcode != 0)
             {
                 Debug.Log("Down load Fail.... ");
                 //toolStripStatusLabel1.Text = "Down load Fail......";
                 //statusStrip1.Update();
+                dialogUI.SetActive(true);
+                DialogUI.Instance
+                    .SetTitle("Message 1")
+                    .SetMessage("JLinkConnectTest Fail111.... JLinkConnectTest.bat")
+                    .SetButtonColor(DialogButtonColor.Blue)
+                    .OnClose(() => Debug.Log("Closed 1"))
+                    .Show();
+
             }
             else
             {
-                ClassUtility.ExecuteCommand("dir");
-                //ClassUtility.ExecuteCommand(textBox1.Text);
+                //ClassUtility.ExecuteCommand("dir");
+                ClassUtility.ExecuteCommand(textTest.text);
                 //toolStripStatusLabel1.Text = "Down load success......";
                 //statusStrip1.Update();
-                Debug.Log("Down load success.... ");
+                Debug.Log("Down load success.... JLinkConnectTest.bat");
             }
 
         }
@@ -128,7 +143,15 @@ public class Download : MonoBehaviour
             Debug.Log("\nException Caught!");
             //Debug.Log("Message :{0} ", e.Message);
             Debug.Log(e.Message + " Cannot read from file.");
-            EditorUtility.DisplayDialog("DialogMsg", e.Message, "Yes");
+            //EditorUtility.DisplayDialog("DialogMsg", e.Message, "Yes");
+            dialogUI.SetActive(true);
+            DialogUI.Instance
+                .SetTitle("Message 1")
+                .SetMessage(e.Message)
+                .SetButtonColor(DialogButtonColor.Blue)
+                .OnClose(() => Debug.Log("Closed 1"))
+                .Show();
+
 
             return;
         }
@@ -147,6 +170,15 @@ public class Download : MonoBehaviour
             Debug.Log("JLinkConnectTest Fail.... ");
             //toolStripStatusLabel1.Text = "Down load Fail......";
             //statusStrip1.Update();
+
+            dialogUI.SetActive(true);
+            DialogUI.Instance
+                .SetTitle("Message 1")
+                .SetMessage("JLinkConnectTest Fail222.... ")
+                .SetButtonColor(DialogButtonColor.Blue)
+                .OnClose(() => Debug.Log("Closed 1"))
+                .Show();
+
             return;
         }
 
@@ -260,6 +292,7 @@ public class Download : MonoBehaviour
             //statusStrip1.Update();
             Debug.Log("Down load Fail.... ");
             //return;
+
         }
         else
         {
@@ -361,7 +394,15 @@ public class Download : MonoBehaviour
             Debug.Log("\nException Caught!");
             //Debug.Log("Message :{0} ", e.Message);
             Debug.Log(e.Message + " Cannot read from file.");
-            EditorUtility.DisplayDialog("DialogMsg", e.Message, "Yes");
+            //EditorUtility.DisplayDialog("DialogMsg", e.Message, "Yes");
+            dialogUI.SetActive(true);
+            DialogUI.Instance
+                .SetTitle("Message 1")
+                .SetMessage(e.Message)
+                .SetButtonColor(DialogButtonColor.Blue)
+                .OnClose(() => Debug.Log("Closed 1"))
+                .Show();
+
 
             return;
         }

@@ -4,6 +4,7 @@ using System.Text;
 //using System.Windows.Forms;     //for MessageBox
 using System.Diagnostics;
 using UnityEditor;
+using EasyUI.Dialogs;
 
 namespace WinFormsTagDownload
 {
@@ -221,6 +222,11 @@ namespace WinFormsTagDownload
         }
 
         /////////*****************************************************
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         public int ExecuteCommand(string command)
         {
             int exitCode;
@@ -236,12 +242,12 @@ namespace WinFormsTagDownload
             processInfo.RedirectStandardOutput = true;
 
             process = Process.Start(processInfo);
-            string output = process.StandardOutput.ReadToEnd();   //要先輸出.若在畫面輸出的資料量大的時候，Powershell畫面所輸出的資料是會將Buffer寫爆的
+            //string output = process.StandardOutput.ReadToEnd();   //要先輸出.若在畫面輸出的資料量大的時候，Powershell畫面所輸出的資料是會將Buffer寫爆的
             process.WaitForExit();
 
             // *** Read the streams ***
             // Warning: This approach can lead to deadlocks, see Edit #2
-            //string output = process.StandardOutput.ReadToEnd();   //若在畫面輸出的資料量大的時候，Powershell畫面所輸出的資料是會將Buffer寫爆的
+            string output = process.StandardOutput.ReadToEnd();   //若在畫面輸出的資料量大的時候，Powershell畫面所輸出的資料是會將Buffer寫爆的
             string error = process.StandardError.ReadToEnd();
 
 
@@ -249,13 +255,17 @@ namespace WinFormsTagDownload
             if (output.Contains("Reset type NORMAL:"))
             {
                 UnityEngine.Debug.Log("Can connect to target..........");
+                
+
 
             }
             else
             {
-                exitCode = 2;
-                error = "Fail....";
+                //exitCode = 2;
+                //error = "Fail....";
                 UnityEngine.Debug.Log("Cannot connect to target....");
+                UnityEngine.Debug.Log(output);
+                UnityEngine.Debug.Log(error);
             }
 
             //if (output.Contains("O.K"))
@@ -319,8 +329,9 @@ namespace WinFormsTagDownload
                 error = "ExecuteCommandTest Fail....";
                 string message = String.Format("error = {0} \r\nexitCode = {1}", (String.IsNullOrEmpty(error) ? "(none)" : error), exitCode);
                 UnityEngine.Debug.Log("Cannot connect to target....");
-                EditorUtility.DisplayDialog("DialogMsg", message, "Yes");
+                //EditorUtility.DisplayDialog("DialogMsg", message, "Yes");
                 //MessageBox.Show(message, "Show...", buttons);
+
             }
 
             //string message = String.Format("error = {0} \r\nexitCode = {1}", (String.IsNullOrEmpty(error) ? "(none)" : error), exitCode);

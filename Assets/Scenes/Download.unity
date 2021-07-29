@@ -4796,7 +4796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 426.88, y: 125.55}
+  m_AnchoredPosition: {x: 405.73, y: 285}
   m_SizeDelta: {x: 146.6916, y: 44.1257}
   m_Pivot: {x: 0.5, y: 0.12825175}
 --- !u!114 &1006993769
@@ -4845,7 +4845,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1549562559}
         m_TargetAssemblyTypeName: Download, Assembly-CSharp
-        m_MethodName: ReturnButton
+        m_MethodName: ExitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
