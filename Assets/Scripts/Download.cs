@@ -83,6 +83,27 @@ public class Download : MonoBehaviour
 
     void Update()
     {
+        //Detect when the up arrow key is pressed down
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            Debug.Log("Up Arrow key was pressed.");
+
+        //Detect when the up arrow key has been released
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+            Debug.Log("Up Arrow key was released.");
+
+        //Detect when the up arrow key has been released
+        if (Input.GetKeyUp(KeyCode.Tab))
+            Debug.Log("Tab key was released.");
+
+        //if (Input.GetKeyDown(KeyCode.Return) && tbx_id[4].text == "Hands")
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("Enter key was released.");
+            tbx_id4_TextChanged();
+        }
+
+
+
         //Debug.Log("Update()!!!!!!... " + cnt++);
     }
 
