@@ -602,4 +602,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Download.unity
-  playerPath: F:/Prg/CSharp/WinFormsTagDownloadUnity/build/WinFormsTagDownloadUnity.exe
+  playerPath: E:/Prg/Csharp/WinFormsTagDownloadUnity/build/WinFormsTagDownloadUnity.exe

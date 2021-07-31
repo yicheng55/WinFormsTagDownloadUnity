@@ -9,6 +9,7 @@ using UnityEditor;
 //using System.Windows.Forms;
 using WinFormsTagDownload;
 using EasyUI.Dialogs;
+using UnityEngine.EventSystems;
 
 public class Download : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class Download : MonoBehaviour
     public Dropdown mDropWakeUpSec;
     public Dropdown mDropRptCnt;
     public Dropdown mDropMaxCnt;
+
+    public GameObject dialogUI;
 
 
     int score, cnt;
@@ -53,7 +56,8 @@ public class Download : MonoBehaviour
 
     private TClassUtility ClassUtility;
 
-    public GameObject dialogUI;
+    private List<GameObject> inputList;
+    EventSystem system;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +83,27 @@ public class Download : MonoBehaviour
         //System.Diagnostics.Process.Start("CMD.exe", strCmdText);    //Start cmd process
 
         BinaryFileRead();
+
+
+        system = EventSystem.current;
+        inputList = new List<GameObject>();
+        InputField[] array = transform.GetComponentsInChildren<InputField>();
+        Debug.Log("array.Length= " + array.Length);
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            inputList.Add(array[i].gameObject);
+            Debug.Log("array= " + i);
+        }
+
+        //system = EventSystem.current;
+        //inputList = new List<GameObject>();
+        //tbx_id = transform.GetComponentsInChildren<InputField>();
+        //for (int i = 0; i < tbx_id.Length; i++)
+        //{
+        //    inputList.Add(tbx_id[i].gameObject);
+        //    Debug.Log("tbx_id= " + i);
+        //}
     }
 
     void Update()
@@ -102,10 +127,65 @@ public class Download : MonoBehaviour
             tbx_id4_TextChanged();
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (inputList.Contains(system.currentSelectedGameObject))
+            {
+                //Positive order
+                GameObject next = NextInput(system.currentSelectedGameObject);
+                system.SetSelectedGameObject(next);
+                ////Reverse order
+                //GameObject last = LastInput(system.currentSelectedGameObject);
+                //system.SetSelectedGameObject(last);
+            }
+        }
 
         //Debug.Log("Update()!!!!!!... " + cnt++);
     }
+
+
+    //Get the last object
+    private GameObject LastInput(GameObject input)
+    {
+        int indexNow = IndexNow(input);
+        if (indexNow - 1 >= 0)
+        {
+            return inputList[indexNow - 1].gameObject;
+        }
+        else
+        {
+            return inputList[inputList.Count - 1].gameObject;
+        }
+    }
+    //Get the sequence of the currently selected object
+    private int IndexNow(GameObject input)
+    {
+        int indexNow = 0;
+        for (int i = 0; i < inputList.Count; i++)
+        {
+            if (input == inputList[i])
+            {
+                indexNow = i;
+                break;
+            }
+        }
+        return indexNow;
+    }
+
+    //Get the next object
+    private GameObject NextInput(GameObject input)
+    {
+        int indexNow = IndexNow(input);
+        if (indexNow + 1 < inputList.Count)
+        {
+            return inputList[indexNow + 1].gameObject;
+        }
+        else
+        {
+            return inputList[0].gameObject;
+        }
+    }
+
 
     public void ExitButton()
     {
