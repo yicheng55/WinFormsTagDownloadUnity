@@ -11,19 +11,30 @@ using UnityEngine.UI;
 public class TCPTestClient : MonoBehaviour {  	
 	#region private members 	
 	private TcpClient socketConnection; 	
-	private Thread clientReceiveThread; 	
-	#endregion  	
-	// Use this for initialization 	
-	void Start () {
-		ConnectToTcpServer();     
-	}  	
-	// Update is called once per frame
-	void Update () {         
-		if (Input.GetKeyDown(KeyCode.Space)) {             
-			SendMessage();         
-		}     
+	private Thread clientReceiveThread;
+	#endregion
+	//// Use this for initialization 	
+	//void Start () {
+	//	ConnectToTcpServer();
+	//}  	
+	//// Update is called once per frame
+	//void Update () {
+	//	if (Input.GetKeyDown(KeyCode.Space)) {
+	//		SendMessage();
+	//	}
+	//}
+
+	public void ConnectButton()
+	{
+		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+		ConnectToTcpServer();
 	}
 
+	public void SendMessageButton()
+	{
+		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+		SendMessage();
+	}
 
 	public void ReturnButton()
 	{

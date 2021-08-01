@@ -6,17 +6,32 @@ using UnityEngine.UI;
 
 public class SetCommand : MonoBehaviour
 {
+
+    private TCPTestClient tCPTestClient;
+
     // Start is called before the first frame update
-    //void Start()
-    //{
+    void Start()
+    {
+        tCPTestClient = new TCPTestClient();
+    }
 
-    //}
+    // Update is called once per frame
+    void Update()
+    {
 
-    //// Update is called once per frame
-    //void Update()
-    //{
+    }
 
-    //}
+    public void ConnectButton()
+    {
+        Debug.Log("ConnectButton()!!!!!!");
+        tCPTestClient.ConnectButton();
+    }
+
+    public void SendmagButton()
+    {
+        Debug.Log("SendmagButton()!!!!!!");
+        tCPTestClient.SendMessageButton();
+    }
 
     public void ReturnButton()
     {
