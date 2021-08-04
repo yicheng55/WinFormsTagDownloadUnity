@@ -118,7 +118,10 @@ public class Download : MonoBehaviour
 
         //Detect when the up arrow key has been released
         if (Input.GetKeyUp(KeyCode.Tab))
+        {
             Debug.Log("Tab key was released.");
+            tbx_id4_TextChanged();
+        }
 
         //if (Input.GetKeyDown(KeyCode.Return) && tbx_id[4].text == "Hands")
         if (Input.GetKeyDown(KeyCode.Return))
@@ -253,7 +256,6 @@ public class Download : MonoBehaviour
                 .OnClose(() => Debug.Log("Closed 1"))
                 .Show();
 
-
             return;
         }
 
@@ -311,7 +313,6 @@ public class Download : MonoBehaviour
         }
         tbx_id[4].text = TAG_ID[4].ToString("X2");
 
-
         TAG_ID[0] = (byte)((TAG_ID[1] + TAG_ID[2] + TAG_ID[3] + ((TAG_ID[4]) & 0xFF)) % 255);
         tbx_id[0].text = TAG_ID[0].ToString("X2");
         Debug.Log("TAG_ID:" + TAG_ID[0].ToString("X2") + TAG_ID[1].ToString("X2") + TAG_ID[2].ToString("X2") + TAG_ID[3].ToString("X2") + TAG_ID[4].ToString("X2"));
@@ -362,6 +363,13 @@ public class Download : MonoBehaviour
 
         if ((TAG_ID[4] == 0xFF) || TAG_ID[4] == 0x00)
         {
+            dialogUI.SetActive(true);
+            DialogUI.Instance
+                .SetTitle("Message warning!!!")
+                .SetMessage("Input TAG_ID warning!!! ")
+                .SetButtonColor(DialogButtonColor.Blue)
+                .OnClose(() => Debug.Log("Closed 1"))
+                .Show();
             //MessageBoxButtons buttons = MessageBoxButtons.OK;
             //MessageBox.Show(" Input TAG_ID warning!!! ", "Warning...", buttons);
         }
