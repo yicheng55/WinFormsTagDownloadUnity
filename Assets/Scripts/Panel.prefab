@@ -1159,7 +1159,6 @@ GameObject:
   - component: {fileID: 8019277403300584053}
   - component: {fileID: 8019277403300584331}
   - component: {fileID: 8019277403300584052}
-  - component: {fileID: 8019277403300584330}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1230,18 +1229,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8019277403300584330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8019277403300584054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bcb45f25c76cb64f8d0ee35da935bc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8019277403394563637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1350,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8019277403300584330}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SetCommand, Assembly-CSharp
         m_MethodName: ReturnButton
         m_Mode: 1
@@ -1616,13 +1603,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 271ac83bd0e2add4e93209a4adb073ca, type: 3}
---- !u!224 &7806844987901675533 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224421765572603708, guid: 271ac83bd0e2add4e93209a4adb073ca, type: 3}
-  m_PrefabInstance: {fileID: 8019277402724706097}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7806773184121813313 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224344996794932848, guid: 271ac83bd0e2add4e93209a4adb073ca, type: 3}
+  m_PrefabInstance: {fileID: 8019277402724706097}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7806844987901675533 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224421765572603708, guid: 271ac83bd0e2add4e93209a4adb073ca, type: 3}
   m_PrefabInstance: {fileID: 8019277402724706097}
   m_PrefabAsset: {fileID: 0}

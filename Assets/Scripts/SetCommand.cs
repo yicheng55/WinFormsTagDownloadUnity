@@ -13,6 +13,7 @@ public class SetCommand : MonoBehaviour
     void Start()
     {
         tCPTestClient = new TCPTestClient();
+        //tCPTestClient.ConnectButton();
     }
 
     // Update is called once per frame
@@ -37,7 +38,6 @@ public class SetCommand : MonoBehaviour
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         SceneManager.LoadScene(0);
-
     }
 
 }

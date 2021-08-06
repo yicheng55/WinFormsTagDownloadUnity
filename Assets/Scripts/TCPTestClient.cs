@@ -8,23 +8,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TCPTestClient : MonoBehaviour {  	
+public class TCPTestClient : MonoBehaviour
+{
+	//public class TCPTestClient
+	//{
+
+	public Text textView;
+
+	private string serverMessage;
 	#region private members 	
 	private TcpClient socketConnection; 	
 	private Thread clientReceiveThread;
-	#endregion
-	//// Use this for initialization 	
-	//void Start () {
-	//	ConnectToTcpServer();
-	//}  	
-	//// Update is called once per frame
-	//void Update () {
-	//	if (Input.GetKeyDown(KeyCode.Space)) {
-	//		SendMessage();
-	//	}
-	//}
+    #endregion
+    //// Use this for initialization 	
+    //void Start () {
+    //	ConnectToTcpServer();
+    //}  	
+    //// Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SendMessage();
+        }
 
-	public void ConnectButton()
+		if(serverMessage != null)
+        {
+			TextViewTest(serverMessage);
+			serverMessage = null;
+		}
+		
+	}
+
+    public void ConnectButton()
 	{
 		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		ConnectToTcpServer();
@@ -40,6 +56,13 @@ public class TCPTestClient : MonoBehaviour {
 	{
 		//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		SceneManager.LoadScene(0);
+
+	}
+
+	public void TextViewTest(string serverMessage)
+	{
+		Debug.Log("TextViewTest message received as: " + serverMessage);
+        textView.text = serverMessage;
 
 	}
 
@@ -72,9 +95,11 @@ public class TCPTestClient : MonoBehaviour {
 						var incommingData = new byte[length]; 						
 						Array.Copy(bytes, 0, incommingData, 0, length); 						
 						// Convert byte array to string message. 						
-						string serverMessage = Encoding.ASCII.GetString(incommingData); 						
-						Debug.Log("server message received as: " + serverMessage); 					
-					} 				
+						serverMessage = Encoding.ASCII.GetString(incommingData); 						
+						Debug.Log("server message received as: " + serverMessage);
+                        //TextViewTest(serverMessage);
+                        //textView.text = serverMessage;
+                    } 				
 				} 			
 			}         
 		}         
@@ -98,7 +123,8 @@ public class TCPTestClient : MonoBehaviour {
 				byte[] clientMessageAsByteArray = Encoding.ASCII.GetBytes(clientMessage); 				
 				// Write byte array to socketConnection stream.                 
 				stream.Write(clientMessageAsByteArray, 0, clientMessageAsByteArray.Length);                 
-				Debug.Log("Client sent his message - should be received by server");             
+				Debug.Log("Client sent his message - should be received by server");
+				textView.text = clientMessage;
 			}         
 		} 		
 		catch (SocketException socketException) {             

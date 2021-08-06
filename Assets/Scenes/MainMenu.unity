@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.874, y: 372}
-  m_SizeDelta: {x: 527.8762, y: 144.5618}
+  m_AnchoredPosition: {x: 15.874, y: 355.29248}
+  m_SizeDelta: {x: 527.8762, y: 111.1467}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &34824681
 MonoBehaviour:
@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Active RFID
+  m_Text: Active Tag
 --- !u!222 &34824682
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1374,7 +1374,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d4c25d9824d8a644392aeb5dfc94f302, type: 3}
-    m_FontSize: 52
+    m_FontSize: 31
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 6
