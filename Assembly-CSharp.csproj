@@ -54,14 +54,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\UITabs\scripts\TabsUI.cs" />
     <Compile Include="Assets\Scripts\SetCommand.cs" />
     <Compile Include="Assets\Scripts\ClassUtility.cs" />
     <Compile Include="Assets\Scripts\Demo.cs" />
     <Compile Include="Assets\Scripts\DialogUI.cs" />
+    <Compile Include="Assets\Scripts\TCPTestClient.cs" />
     <Compile Include="Assets\Scripts\Download.cs" />
     <Compile Include="Assets\UITabs\scripts\TabButtonUI.cs" />
-    <Compile Include="Assets\UITabs\scripts\TabsUI.cs" />
-    <Compile Include="Assets\Scripts\TCPTestClient.cs" />
+    <Compile Include="Assets\ListView\Examples\DemoItem.cs" />
+    <Compile Include="Assets\ListView\Scripts\ListView.cs" />
+    <Compile Include="Assets\ListView\Examples\DemoMain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Terms of Use End User Lisence Agreement.txt" />
