@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2945,8 +2945,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 393.11, y: -116.64}
-  m_SizeDelta: {x: 54.5238, y: 44.763}
+  m_AnchoredPosition: {x: 393.80823, y: -116.64}
+  m_SizeDelta: {x: 55.9203, y: 44.763}
   m_Pivot: {x: 0.5000003, y: 0.5000002}
 --- !u!114 &630422904
 MonoBehaviour:
@@ -7430,8 +7430,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchoredPosition: {x: 5, y: -0.5}
+  m_SizeDelta: {x: -10, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1710790536
 MonoBehaviour:
@@ -8757,8 +8757,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 221, y: -115}
-  m_SizeDelta: {x: 50.3967, y: 44.76}
+  m_AnchoredPosition: {x: 224.13, y: -115}
+  m_SizeDelta: {x: 56.658, y: 44.76}
   m_Pivot: {x: 0.5000003, y: 0.5000002}
 --- !u!114 &1928680129
 MonoBehaviour:
@@ -9054,8 +9054,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 307.7, y: -116.64}
-  m_SizeDelta: {x: 49.3649, y: 44.763}
+  m_AnchoredPosition: {x: 312.58783, y: -116.64}
+  m_SizeDelta: {x: 59.1407, y: 44.763}
   m_Pivot: {x: 0.5000003, y: 0.5000002}
 --- !u!114 &1987864046
 MonoBehaviour:
@@ -9590,8 +9590,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 134, y: -115}
-  m_SizeDelta: {x: 53.173, y: 44.76}
+  m_AnchoredPosition: {x: 136.09485, y: -115}
+  m_SizeDelta: {x: 57.3626, y: 44.76}
   m_Pivot: {x: 0.5000003, y: 0.5000002}
 --- !u!114 &2067821153
 MonoBehaviour:
