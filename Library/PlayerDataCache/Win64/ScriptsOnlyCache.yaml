@@ -4,7 +4,6 @@ ScriptsOnlyBuild:
     - Download
     - EasyUI.Dialogs.DialogUI
     - EasyUI.Tabs.TabsUI
-    - Menu
     - TCPTestClient
     - TabButtonUI
     Unity.Rider.Editor.dll:
@@ -67,27 +66,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1446}
     - Class: 114
-      Script: {instanceID: 2274}
+      Script: {instanceID: 2268}
     - Class: 114
-      Script: {instanceID: 2374}
+      Script: {instanceID: 2368}
     - Class: 114
-      Script: {instanceID: 2520}
+      Script: {instanceID: 2514}
     - Class: 114
-      Script: {instanceID: 2560}
+      Script: {instanceID: 2554}
     - Class: 114
-      Script: {instanceID: 2700}
+      Script: {instanceID: 2694}
     - Class: 114
-      Script: {instanceID: 2708}
+      Script: {instanceID: 2702}
     - Class: 114
-      Script: {instanceID: 2778}
+      Script: {instanceID: 2772}
     - Class: 114
-      Script: {instanceID: 2858}
+      Script: {instanceID: 2852}
     - Class: 114
-      Script: {instanceID: 3292}
+      Script: {instanceID: 3286}
     - Class: 114
-      Script: {instanceID: 3396}
+      Script: {instanceID: 3390}
     - Class: 114
-      Script: {instanceID: 3432}
+      Script: {instanceID: 3426}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -107,67 +106,6 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 225
-      Script: {instanceID: 0}
-    Assets/Scenes/MainMenu.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 65
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1442}
-    - Class: 114
-      Script: {instanceID: 1446}
-    - Class: 114
-      Script: {instanceID: 1516}
-    - Class: 114
-      Script: {instanceID: 2274}
-    - Class: 114
-      Script: {instanceID: 2374}
-    - Class: 114
-      Script: {instanceID: 2520}
-    - Class: 114
-      Script: {instanceID: 2700}
-    - Class: 114
-      Script: {instanceID: 2778}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/SetCommand.unity:
     - Class: 1
@@ -197,27 +135,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1446}
     - Class: 114
-      Script: {instanceID: 1624}
+      Script: {instanceID: 1618}
     - Class: 114
-      Script: {instanceID: 1672}
+      Script: {instanceID: 1666}
     - Class: 114
-      Script: {instanceID: 1688}
+      Script: {instanceID: 1682}
     - Class: 114
-      Script: {instanceID: 1716}
+      Script: {instanceID: 1710}
     - Class: 114
-      Script: {instanceID: 2274}
+      Script: {instanceID: 2268}
     - Class: 114
-      Script: {instanceID: 2374}
+      Script: {instanceID: 2368}
     - Class: 114
-      Script: {instanceID: 2520}
+      Script: {instanceID: 2514}
     - Class: 114
-      Script: {instanceID: 2700}
+      Script: {instanceID: 2694}
     - Class: 114
-      Script: {instanceID: 2778}
+      Script: {instanceID: 2772}
     - Class: 114
-      Script: {instanceID: 2964}
+      Script: {instanceID: 2958}
     - Class: 114
-      Script: {instanceID: 3788}
+      Script: {instanceID: 3782}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -723,7 +661,6 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   platform: 19
   scenePathNames:
-  - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Download.unity
   - Assets/Scenes/SetCommand.unity
-  playerPath: F:/Prg/CSharp/WinFormsTagDownloadUnity/build/WinFormsTagDownloadUnity.exe
+  playerPath: E:/Prg/Csharp/WinFormsTagDownloadUnity/build/WinFormsTagDownloadUnity.exe

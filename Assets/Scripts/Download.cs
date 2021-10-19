@@ -41,16 +41,39 @@ public class Download : MonoBehaviour
     private const int NVM_BASE_TAGID2_ADDR = 0x3EF04;
     private const int NVM_BASE_TAGID3_ADDR = 0x3EF05;
     private const int NVM_BASE_TAGID4_ADDR = 0x3EF06;
-
+    //gDatarate      = 0x3EF07;
     private const int NVM_BASE_RfChn_ADDR = 0x3EF08;
     private const int NVM_BASE_WakeUp_ADDR = 0x3EF09;
     private const int NVM_BASE_LSMin_ADDR = 0x3EF0A;
     private const int NVM_BASE_LSHour_ADDR = 0x3EF0B;
+    //DefaultRepeaterID[5]  = 0x3EF0C;
+    //MaxTagID[5] = 0x3EF11;
+    //NVM_version = 0x3EF16;
+    private const int NVM_BASE_WakeUpTempCnt_ADDR = 0x3EF17;
+    private const int NVM_BASE_HourCheckBatteryDetect0_ADDR = 0x3EF18;
+    private const int NVM_BASE_HourCheckBatteryDetect1_ADDR = 0x3EF19;
+    //EPD_Size       = 0x3EF1A;
+    //EPD_Color      = 0x3EF1B;
+    //Option
+    //AutoReport
+    //CheckSum
     private const int NVM_BASE_MaxRetryCount_ADDR = 0x3EF1F;
     private const int NVM_BASE_AdcBase_ADDR = 0x3EF20;
     private const int NVM_BASE_Reserved_ADDR = 0x3EF22;
 
     private const int NVM_BASE_ReportCnt_ADDR = 0x3EF32;
+    //DevType
+    private const int NVM_BASE_RfPower_ADDR = 0x3EF34;
+
+    ////private const int NVM_BASE_RfChn_ADDR = 0x3EF08;
+    ////private const int NVM_BASE_WakeUp_ADDR = 0x3EF09;
+    ////private const int NVM_BASE_LSMin_ADDR = 0x3EF0A;
+    ////private const int NVM_BASE_LSHour_ADDR = 0x3EF0B;
+    ////private const int NVM_BASE_MaxRetryCount_ADDR = 0x3EF1F;
+    ////private const int NVM_BASE_AdcBase_ADDR = 0x3EF20;
+    ////private const int NVM_BASE_Reserved_ADDR = 0x3EF22;
+
+    ////private const int NVM_BASE_ReportCnt_ADDR = 0x3EF32;
     private const int NVM_BASE_TempRef_ADDRL = 0x3EE86;
     private const int NVM_BASE_TempRef_ADDRH = 0x3EE87;
 
@@ -495,6 +518,12 @@ public class Download : MonoBehaviour
                          tbx_TempRef.Text = dTempRef.ToString();    */
 
             //ClassUtility.DumpBytes(ByteArray, ByteArray.Length);
+
+            Debug.Log("NVM_BASE_WakeUpTempCnt:"+ readBin[NVM_BASE_WakeUpTempCnt_ADDR].ToString());
+            Debug.Log("NVM_BASE_HourCheckBatteryDetect0:"+ readBin[NVM_BASE_HourCheckBatteryDetect0_ADDR].ToString());
+            Debug.Log("NVM_BASE_HourCheckBatteryDetect1:"+ readBin[NVM_BASE_HourCheckBatteryDetect1_ADDR].ToString());
+            Debug.Log("NVM_BASE_RfPower:0x"+readBin[NVM_BASE_RfPower_ADDR].ToString("X2"));
+
             Debug.Log("BinaryFileRead() ... end");
         }
         catch (IOException e)
