@@ -20,9 +20,15 @@ public class Download : MonoBehaviour
     public InputField tbx_LSHour;
     public InputField tbx_RfChannel;
 
+    public InputField inTempCnt;
+    public InputField inRfPower;
+    public InputField inBatteryDetCnt;
+    public InputField inHighDrivingCurrent;
+
     public Dropdown mDropWakeUpSec;
     public Dropdown mDropRptCnt;
     public Dropdown mDropMaxCnt;
+
 
     public GameObject dialogUI;
 
@@ -519,6 +525,11 @@ public class Download : MonoBehaviour
 
             //ClassUtility.DumpBytes(ByteArray, ByteArray.Length);
 
+            inTempCnt.text = readBin[NVM_BASE_WakeUpTempCnt_ADDR].ToString();
+            inRfPower.text = readBin[NVM_BASE_RfPower_ADDR].ToString("X2");
+            inBatteryDetCnt.text = readBin[NVM_BASE_HourCheckBatteryDetect0_ADDR].ToString();
+            inHighDrivingCurrent.text = readBin[NVM_BASE_HourCheckBatteryDetect1_ADDR].ToString();
+
             Debug.Log("NVM_BASE_WakeUpTempCnt:"+ readBin[NVM_BASE_WakeUpTempCnt_ADDR].ToString());
             Debug.Log("NVM_BASE_HourCheckBatteryDetect0:"+ readBin[NVM_BASE_HourCheckBatteryDetect0_ADDR].ToString());
             Debug.Log("NVM_BASE_HourCheckBatteryDetect1:"+ readBin[NVM_BASE_HourCheckBatteryDetect1_ADDR].ToString());
@@ -593,6 +604,11 @@ public class Download : MonoBehaviour
         //readBin[NVM_BASE_Reserved_ADDR] = ClassUtility.HexToByteArray(tbx_Rev.Text);
 
         readBin[NVM_BASE_MaxRetryCount_ADDR] = Convert.ToByte(mDropMaxCnt.captionText.text);
+
+        readBin[NVM_BASE_WakeUpTempCnt_ADDR] = Convert.ToByte(inTempCnt.text);
+        readBin[NVM_BASE_RfPower_ADDR] = ClassUtility.HexToByte(inRfPower.text);
+        readBin[NVM_BASE_HourCheckBatteryDetect0_ADDR] = Convert.ToByte(inBatteryDetCnt.text);
+        readBin[NVM_BASE_HourCheckBatteryDetect1_ADDR] = Convert.ToByte(inHighDrivingCurrent.text);
 
 
         dTempRef = Convert.ToDouble(tbx_TempRef.text);
