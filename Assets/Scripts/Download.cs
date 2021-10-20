@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +10,7 @@ using UnityEditor;
 using WinFormsTagDownload;
 using EasyUI.Dialogs;
 using UnityEngine.EventSystems;
+using System.Windows.Forms;
 
 public class Download : MonoBehaviour
 {
@@ -631,13 +632,107 @@ public class Download : MonoBehaviour
         //byte[] byteArray = System.Text.Encoding.Default.GetBytes(tbx_Rev.Text);
         //Console.WriteLine("byteArray.Length: {0}", byteArray.Length);
 
-        //System.Text.Encoding.Default.GetBytes(String); //string��byte[]
-        //System.Text.Encoding.Default.GetString(byte[]);//byte[]��String 
+        //System.Text.Encoding.Default.GetBytes(String); //string轉byte[]
+        //System.Text.Encoding.Default.GetString(byte[]);//byte[]轉String 
 
         //ClassUtility.ArrayCopyTestFunction();
 
 
     }
 
+    public void btn_tabP1_OpenFileButton()
+    {
+        string filename;
+        short TempRef;
+        double dTempRef;
+        List<byte> byteSource = new List<byte>();
 
+        //MessageBoxButtons buttons = MessageBoxButtons.OK;
+        //MessageBox.Show(" Input TAG_ID warning!!! ", "Warning...    ", buttons);   //MessageBox.Show Test OK.
+
+        OpenFileDialog dialog = new OpenFileDialog();
+        dialog.Filter = "exe files (*.bin)|*.bin";  //过滤文件类型  
+        dialog.InitialDirectory = ".";  //定义打开的默认文件夹位置，可以在显示对话框之前设置好各种属性  
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+            filename = dialog.FileName;
+            Debug.Log(filename);
+
+
+            try
+            {
+                Debug.Log("BinaryFileRead()");
+                string path = @"hex.bin";
+                // Calling the ReadAllBytes() function
+                ////readBin = File.ReadAllBytes(path);
+                readBin = File.ReadAllBytes(filename);
+                byteSource.AddRange(readBin);
+
+
+                tbx_id[0].text = readBin[NVM_BASE_TAGID0_ADDR].ToString("X2");
+                tbx_id[1].text = readBin[NVM_BASE_TAGID1_ADDR].ToString("X2");
+                tbx_id[2].text = readBin[NVM_BASE_TAGID2_ADDR].ToString("X2");
+                tbx_id[3].text = readBin[NVM_BASE_TAGID3_ADDR].ToString("X2");
+                tbx_id[4].text = readBin[NVM_BASE_TAGID4_ADDR].ToString("X2");
+
+                tbx_RfChannel.text = readBin[NVM_BASE_RfChn_ADDR].ToString();
+
+
+                tbx_LSMin.text = readBin[NVM_BASE_LSMin_ADDR].ToString();
+                tbx_LSHour.text = readBin[NVM_BASE_LSHour_ADDR].ToString();
+
+
+                mDropWakeUpSec.captionText.text = readBin[NVM_BASE_WakeUp_ADDR].ToString();
+                mDropRptCnt.captionText.text = readBin[NVM_BASE_ReportCnt_ADDR].ToString();
+
+                mDropMaxCnt.captionText.text = readBin[NVM_BASE_MaxRetryCount_ADDR].ToString();
+
+                Debug.Log("mDropWakeUpSec.captionText.text =" + mDropWakeUpSec.captionText.text);
+                Debug.Log("mDropRptCnt.captionText.text =" + mDropRptCnt.captionText.text);
+
+                Debug.Log("mDropMaxCnt.captionText.text =" + mDropMaxCnt.captionText.text);
+                Debug.Log("readBin[NVM_BASE_MaxRetryCount_ADDR] =" + readBin[NVM_BASE_MaxRetryCount_ADDR].ToString());
+
+                TempRef = (short)(readBin[NVM_BASE_TempRef_ADDRH] << 8 | readBin[NVM_BASE_TempRef_ADDRL]);
+                dTempRef = TempRef / 10.0;
+                string message = String.Format("TempRef = {0}", dTempRef);
+                Debug.Log(message);
+                Debug.Log("AAAA___TempRef =" + dTempRef);
+                tbx_TempRef.text = dTempRef.ToString("0.0");
+
+
+                inTempCnt.text = readBin[NVM_BASE_WakeUpTempCnt_ADDR].ToString();
+                inRfPower.text = readBin[NVM_BASE_RfPower_ADDR].ToString("X2");
+                inBatteryDetCnt.text = readBin[NVM_BASE_HourCheckBatteryDetect0_ADDR].ToString();
+                inHighDrivingCurrent.text = readBin[NVM_BASE_HourCheckBatteryDetect1_ADDR].ToString();
+
+                Debug.Log("NVM_BASE_WakeUpTempCnt:" + readBin[NVM_BASE_WakeUpTempCnt_ADDR].ToString());
+                Debug.Log("NVM_BASE_HourCheckBatteryDetect0:" + readBin[NVM_BASE_HourCheckBatteryDetect0_ADDR].ToString());
+                Debug.Log("NVM_BASE_HourCheckBatteryDetect1:" + readBin[NVM_BASE_HourCheckBatteryDetect1_ADDR].ToString());
+                Debug.Log("NVM_BASE_RfPower:0x" + readBin[NVM_BASE_RfPower_ADDR].ToString("X2"));
+
+                Debug.Log("BinaryFileRead() ... end");
+            }
+            catch (IOException e)
+            {
+                //MessageBoxButtons buttons = MessageBoxButtons.OK;
+                Debug.Log("\nException Caught!");
+                //Debug.Log("Message :{0} ", e.Message);
+                Debug.Log(e.Message + " Cannot read from file.");
+                //EditorUtility.DisplayDialog("DialogMsg", e.Message, "Yes");
+                dialogUI.SetActive(true);
+                DialogUI.Instance
+                    .SetTitle("Message 1")
+                    .SetMessage(e.Message)
+                    .SetButtonColor(DialogButtonColor.Blue)
+                    .OnClose(() => Debug.Log("Closed 1"))
+                    .Show();
+
+
+                return;
+            }
+
+        }
+
+    }
 }
