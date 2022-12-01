@@ -14,9 +14,10 @@ using System.Windows.Forms;
 
 public class Download : MonoBehaviour
 {
-    public InputField   textTest;
+    public InputField textTest;
     public InputField[] tbx_id;
-    public InputField   tbx_TempRef;
+    public InputField tbx_inBarCode;
+    public InputField tbx_TempRef;
     public InputField tbx_LSMin;
     public InputField tbx_LSHour;
     public InputField tbx_RfChannel;
@@ -100,6 +101,7 @@ public class Download : MonoBehaviour
         tbx_id[2].characterLimit = 2;
         tbx_id[3].characterLimit = 2;
         tbx_id[4].characterLimit = 2;
+        tbx_inBarCode.characterLimit = 10;
 
         tbx_LSMin.characterLimit = 2;
         tbx_LSHour.characterLimit = 2;
