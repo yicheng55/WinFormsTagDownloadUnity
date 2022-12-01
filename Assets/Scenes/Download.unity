@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8088,7 +8088,7 @@ MonoBehaviour:
   - {fileID: 1928680129}
   - {fileID: 1987864046}
   - {fileID: 630422904}
-  tbx_inBarCode: {fileID: 0}
+  tbx_inBarCode: {fileID: 2068969331}
   tbx_TempRef: {fileID: 338420618}
   tbx_LSMin: {fileID: 1771068070}
   tbx_LSHour: {fileID: 1341477831}
