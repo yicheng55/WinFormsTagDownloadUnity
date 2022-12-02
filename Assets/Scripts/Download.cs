@@ -411,7 +411,7 @@ public class Download : MonoBehaviour
             //MessageBox.Show(" Input TAG_ID warning!!! ", "Warning...", buttons);
         }
 
-
+        tbx_inBarCode.text = TAG_ID[0].ToString("X2") + TAG_ID[1].ToString("X2") + TAG_ID[2].ToString("X2") + TAG_ID[3].ToString("X2") + TAG_ID[4].ToString("X2");
         //TAG_ID[0] = ClassUtility.HexToByte(tbx_id0.Text);      //tbx_id4.Text
         //ByteArray[0] = ClassUtility.HexToByte(valueOne);      //tbx_id4.Text
         /*
