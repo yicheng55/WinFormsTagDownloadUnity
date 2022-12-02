@@ -366,7 +366,12 @@ public class Download : MonoBehaviour
 
         mDropWakeUpSecValue = mDropWakeUpSec.value;
         Debug.Log("WakeUpSec = " + mDropWakeUpSecValue);
+        //tbx_inBarCode.text = "4555666666666";
 
+        // TAG_ID[1] = ClassUtility.HexToByte(tbx_id[1].text);      //tbx_id4.Text
+        // ClassUtility.HexToByteArray(tbx_inBarCode.text);
+        // Debug.Log( ClassUtility.(tbx_inBarCode.text));
+        // tbx_inBarCode.text = mDropWakeUpSec.captionText.text;
         //m_Message = mDropWakeUpSec.options[score].text;
         //Debug.Log("m_Message = " + m_Message);
 
@@ -664,7 +669,7 @@ public class Download : MonoBehaviour
             try
             {
                 Debug.Log("BinaryFileRead()");
-                string path = @"hex.bin";
+                // string path = @"hex.bin";
                 // Calling the ReadAllBytes() function
                 ////readBin = File.ReadAllBytes(path);
                 readBin = File.ReadAllBytes(filename);
