@@ -246,44 +246,13 @@ public class Download : MonoBehaviour
     }
 
 
-    public void ExitButton()
-    {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        SceneManager.LoadScene(0);
-
-    }
-    public void ReturnButton()
-    {
-
-        //if (inBarCode_active == 0)
-        if (tbx_inBarCode.isActiveAndEnabled == true)
-        {
-            GameObject inputFieldGo = GameObject.Find("inBarCode");
-            InputField inputFieldCo = inputFieldGo.GetComponent<InputField>();
-            Debug.Log(inputFieldCo.text);
-
-            inputFieldCo.text = "AAAA";
-            //inputFieldCo.shouldActivateOnSelect(true);
-            //inputFieldCo.Select(true);
-        }
-
-        dialogUI.SetActive(true);
-        DialogUI.Instance
-        .SetTitle("Message 1")
-        .SetMessage("Hello James!")
-        .SetButtonColor(DialogButtonColor.Blue)
-        .OnClose(() => Debug.Log("Closed 1"))
-        .Show();
-    }
-
-
     public void btn_tabP1_Burn1_Click()
     {
         int retcode;
 
         try
         {
-
+            btn_tabP1_SaveFile_Click();
             //retcode = ClassUtility.ExecuteCommandTest("dir");
             retcode = ClassUtility.ExecuteCommandTest("JLinkConnectTest.bat");
             if (retcode != 0)
@@ -388,22 +357,128 @@ public class Download : MonoBehaviour
         tbx_id[0].text = TAG_ID[0].ToString("X2");
         Debug.Log("TAG_ID:" + TAG_ID[0].ToString("X2") + TAG_ID[1].ToString("X2") + TAG_ID[2].ToString("X2") + TAG_ID[3].ToString("X2") + TAG_ID[4].ToString("X2"));
 
-        btn_tabP1_SaveFile_Click();
+        //btn_tabP1_SaveFile_Click();
 
         btn_tabP1_Burn1_Click();
 
     }
 
+    public void ExitButton()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(0);
 
-    public void TestButton()
+    }
+    public void ReturnButton()
+    {
+        int ret ;
+        ret = BarCodeFunction();
+        Debug.Log("ret: " + ret);
+        ////byte[] TAG_ID = new byte[5];
+        ////if (inBarCode_active == 0)
+        //if (tbx_inBarCode.isActiveAndEnabled == true)
+        //{
+        //    GameObject inputFieldGo = GameObject.Find("inBarCode");
+        //    InputField inputFieldCo = inputFieldGo.GetComponent<InputField>();
+        //    Debug.Log(inputFieldCo.text);
+
+        //    if (tbx_inBarCode.text.Length == 10)
+        //    {
+
+        //        tbx_id[4].text = tbx_inBarCode.text.Substring(0, 2);      //tbx_id4.Text
+        //        tbx_id[3].text = tbx_inBarCode.text.Substring(2, 2);      //tbx_id4.Text
+        //        tbx_id[2].text = tbx_inBarCode.text.Substring(4, 2);      //tbx_id4.Text
+        //        tbx_id[1].text = tbx_inBarCode.text.Substring(6, 2);      //tbx_id4.Text
+        //        tbx_id[0].text = tbx_inBarCode.text.Substring(8, 2);      //tbx_id4.Text
+
+        //        //TAG_ID[4] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(0, 2));      //tbx_id4.Text
+        //        //TAG_ID[3] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(2, 2));      //tbx_id4.Text
+        //        //TAG_ID[2] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(4, 2));      //tbx_id4.Text
+        //        //TAG_ID[1] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(6, 2));      //tbx_id4.Text
+        //        //TAG_ID[0] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(8, 2));      //tbx_id4.Text
+        //        //Debug.Log(TAG_ID[4]);
+        //        //Debug.Log(TAG_ID[3]);
+        //        //Debug.Log(TAG_ID[2]);
+        //        //Debug.Log(TAG_ID[1]);
+        //        //Debug.Log(TAG_ID[0]);
+
+        //        //Debug.Log(tbx_inBarCode.text.Substring(0, 2));
+        //        //Debug.Log(tbx_inBarCode.text.Substring(2, 2));
+        //        //Debug.Log(tbx_inBarCode.text.Substring(4, 2));
+        //        //Debug.Log(tbx_inBarCode.text.Substring(6, 2));
+        //        //Debug.Log(tbx_inBarCode.text.Substring(8, 2));
+        //    }
+        //    else
+        //    {
+        //        dialogUI.SetActive(true);
+        //        DialogUI.Instance
+        //        .SetTitle("Message error!!!")
+        //        .SetMessage("BarCode length error!")
+        //        .SetButtonColor(DialogButtonColor.Blue)
+        //        .OnClose(() => Debug.Log("Closed 1"))
+        //        .Show();
+        //    }
+
+        //    inputFieldCo.text = "";
+        //    //inputFieldCo.onEndEdit
+        //    //inputFieldCo.shouldActivateOnSelect(true);
+        //    //inputFieldCo.Select(true);
+        //}
+
+    }
+
+
+    public int BarCodeFunction()
+    {
+        //byte[] TAG_ID = new byte[5];
+        //if (inBarCode_active == 0)
+        if (tbx_inBarCode.isActiveAndEnabled == true)
+        {
+            GameObject inputFieldGo = GameObject.Find("inBarCode");
+            InputField inputFieldCo = inputFieldGo.GetComponent<InputField>();
+            Debug.Log(inputFieldCo.text);
+
+            if (tbx_inBarCode.text.Length == 10)
+            {
+                tbx_id[0].text = tbx_inBarCode.text.Substring(0, 2);      //tbx_id4.Text
+                tbx_id[1].text = tbx_inBarCode.text.Substring(2, 2);      //tbx_id4.Text
+                tbx_id[2].text = tbx_inBarCode.text.Substring(4, 2);      //tbx_id4.Text
+                tbx_id[3].text = tbx_inBarCode.text.Substring(6, 2);      //tbx_id4.Text
+                tbx_id[4].text = tbx_inBarCode.text.Substring(8, 2);      //tbx_id4.Text
+            }
+            else
+            {
+                dialogUI.SetActive(true);
+                DialogUI.Instance
+                .SetTitle("Message error!!!")
+                .SetMessage("BarCode data error!")
+                .SetButtonColor(DialogButtonColor.Blue)
+                .OnClose(() => Debug.Log("Closed 1"))
+                .Show();
+                inputFieldCo.text = "";
+                //取消動作
+                return 2;
+            }
+
+            inputFieldCo.text = "";
+            //inputFieldCo.onEndEdit
+            //inputFieldCo.shouldActivateOnSelect(true);
+            //inputFieldCo.Select(true);
+            //正常作用
+            return 1;
+        }
+
+        //無作用
+        return 0;
+    }
+
+
+    public void btnTestButton()
     {
         // ClassUtility = new TClassUtility();
         byte[] TAG_ID = new byte[5];
         //string m_Message;
         Debug.Log("textTest: " + textTest.text);
-
-        //textTest.text = score.ToString();
-        //Debug.Log(score);
 
         mDropWakeUpSecValue = mDropWakeUpSec.value;
         Debug.Log("WakeUpSec = " + mDropWakeUpSecValue);
@@ -454,9 +529,9 @@ public class Download : MonoBehaviour
         // tbx_inBarCode.isActiveAndEnabled  檢查是否 SetActive(true)
         Debug.Log("tbx_inBarCode.isActiveAndEnabled = " + tbx_inBarCode.isActiveAndEnabled);
 
-        //Reverse order
-        GameObject last = LastInput(system.currentSelectedGameObject);
-        system.SetSelectedGameObject(last);
+        ////Reverse order
+        //GameObject last = LastInput(system.currentSelectedGameObject);
+        //system.SetSelectedGameObject(last);
 
         //tbx_id[0].gameObject.SetActive(false);
         //tbx_id[1].gameObject.SetActive(false);
@@ -480,8 +555,122 @@ public class Download : MonoBehaviour
         //Debug.Log("mDropWakeUpSec = " + mDropWakeUpSec.captionText.text);
         //Debug.Log("mDropRptCnt = " + mDropRptCnt.captionText.text);
         //Debug.Log("mDropMaxCnt = " + mDropMaxCnt.captionText.text);
+        //btn_tabP1_SaveFile_Click();
+    }
 
-        score++;
+
+    //public void TestButton()
+    //{
+    //    // ClassUtility = new TClassUtility();
+    //    byte[] TAG_ID = new byte[5];
+    //    //string m_Message;
+    //    Debug.Log("textTest: " + textTest.text);
+
+    //    //textTest.text = score.ToString();
+    //    //Debug.Log(score);
+
+    //    mDropWakeUpSecValue = mDropWakeUpSec.value;
+    //    Debug.Log("WakeUpSec = " + mDropWakeUpSecValue);
+    //    //tbx_inBarCode.text = "4555666666666";
+
+    //    //if (inBarCode_active == 0)
+    //    if (tbx_inBarCode.isActiveAndEnabled == true)
+    //    {
+    //        Debug.Log(tbx_inBarCode.text.Length);
+    //        if (tbx_inBarCode.text.Length == 10)
+    //        {
+    //            TAG_ID[4] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(0, 2));      //tbx_id4.Text
+    //            TAG_ID[3] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(2, 2));      //tbx_id4.Text
+    //            TAG_ID[2] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(4, 2));      //tbx_id4.Text
+    //            TAG_ID[1] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(6, 2));      //tbx_id4.Text
+    //            TAG_ID[0] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(8, 2));      //tbx_id4.Text
+    //            Debug.Log(TAG_ID[0]);
+    //            Debug.Log(TAG_ID[1]);
+    //            Debug.Log(TAG_ID[2]);
+    //            Debug.Log(TAG_ID[3]);
+    //            Debug.Log(TAG_ID[4]);
+
+    //            //Debug.Log(tbx_inBarCode.text.Substring(0, 2));
+    //            //Debug.Log(tbx_inBarCode.text.Substring(2, 2));
+    //            //Debug.Log(tbx_inBarCode.text.Substring(4, 2));
+    //            //Debug.Log(tbx_inBarCode.text.Substring(6, 2));
+    //            //Debug.Log(tbx_inBarCode.text.Substring(8, 2));
+    //        }
+
+    //        tbx_inBarCode.gameObject.SetActive(false);
+    //        for (int i = 0; i < tbx_id.Length; i++)
+    //        {
+    //            tbx_id[i].gameObject.SetActive(true);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        tbx_inBarCode.gameObject.SetActive(true);
+
+    //        for (int i = 0; i < tbx_id.Length; i++)
+    //        {
+    //            tbx_id[i].gameObject.SetActive(false);
+    //        }
+    //    }
+
+    //    inBarCode_active = ~inBarCode_active;
+
+    //    // tbx_inBarCode.isActiveAndEnabled  檢查是否 SetActive(true)
+    //    Debug.Log("tbx_inBarCode.isActiveAndEnabled = " + tbx_inBarCode.isActiveAndEnabled);
+
+    //    //Reverse order
+    //    GameObject last = LastInput(system.currentSelectedGameObject);
+    //    system.SetSelectedGameObject(last);
+
+    //    //tbx_id[0].gameObject.SetActive(false);
+    //    //tbx_id[1].gameObject.SetActive(false);
+    //    //tbx_id[2].gameObject.SetActive(false);
+    //    //tbx_id[3].gameObject.SetActive(false);
+    //    //tbx_id[4].gameObject.SetActive(false);
+
+    //    //tbx_inBarCode.hideFlags = hideFlags;
+
+    //    //Debug.Log("tbx_inBarCode = " + tbx_inBarCode.text);
+    //    //TAG_ID[0] = ClassUtility.HexToByte("45");
+
+    //    // TAG_ID[1] = ClassUtility.HexToByte(tbx_id[1].text);      //tbx_id4.Text, tbx_inBarCode.text
+    //    // ClassUtility.HexToByteArray(tbx_inBarCode.text);
+    //    // Debug.Log( ClassUtility.(tbx_inBarCode.text));
+    //    // tbx_inBarCode.text = mDropWakeUpSec.captionText.text;
+    //    //m_Message = mDropWakeUpSec.options[score].text;
+    //    //Debug.Log("m_Message = " + m_Message);
+
+    //    //mDropWakeUpSec.captionText.text = mDropWakeUpSec.options[score].text;
+    //    //Debug.Log("mDropWakeUpSec = " + mDropWakeUpSec.captionText.text);
+    //    //Debug.Log("mDropRptCnt = " + mDropRptCnt.captionText.text);
+    //    //Debug.Log("mDropMaxCnt = " + mDropMaxCnt.captionText.text);
+
+    //    score++;
+    //    tbx_id4_TextChanged();
+    //    btn_tabP1_SaveFile_Click();
+    //}
+
+
+    public void SaveFileButton()
+    {
+        //string m_Message;
+        Debug.Log("textTest: " + textTest.text);
+
+        //textTest.text = score.ToString();
+        //Debug.Log(score);
+
+        mDropWakeUpSecValue = mDropWakeUpSec.value;
+        Debug.Log("WakeUpSec = " + mDropWakeUpSecValue);
+
+        //m_Message = mDropWakeUpSec.options[score].text;
+        //Debug.Log("m_Message = " + m_Message);
+
+        //mDropWakeUpSec.captionText.text = mDropWakeUpSec.options[score].text;
+        Debug.Log("mDropWakeUpSec = " + mDropWakeUpSec.captionText.text);
+        Debug.Log("mDropRptCnt = " + mDropRptCnt.captionText.text);
+        Debug.Log("mDropMaxCnt = " + mDropMaxCnt.captionText.text);
+
+        //score++;
         tbx_id4_TextChanged();
         btn_tabP1_SaveFile_Click();
     }
@@ -489,6 +678,12 @@ public class Download : MonoBehaviour
 
     public void tbx_id4_TextChanged()
     {
+
+        if (tbx_inBarCode.isActiveAndEnabled == true)
+        {
+            Debug.Log("tbx_inBarCode.isActiveAndEnabled == true then  return; ");
+            return ;
+        }
         //String valueOne = this.tbx_id4.Text;
         //int tmp;
         byte[] TAG_ID = new byte[5];
@@ -539,7 +734,6 @@ public class Download : MonoBehaviour
             //statusStrip1.Update();
             Debug.Log("Down load Fail.... ");
             //return;
-
         }
         else
         {

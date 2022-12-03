@@ -1886,7 +1886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -199.09, y: -116.64}
+  m_AnchoredPosition: {x: -169, y: -112.38}
   m_SizeDelta: {x: 83.063, y: 44.76}
   m_Pivot: {x: 0.5000003, y: 0.5000002}
 --- !u!114 &338420618
@@ -2752,7 +2752,7 @@ GameObject:
   - component: {fileID: 426001626}
   - component: {fileID: 426001625}
   m_Layer: 5
-  m_Name: btnBurn1Test
+  m_Name: BarCode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2775,8 +2775,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 613, y: -161}
-  m_SizeDelta: {x: 182.8926, y: 64.812}
+  m_AnchoredPosition: {x: 614.12, y: -141.89}
+  m_SizeDelta: {x: 129.1511, y: 57.6465}
   m_Pivot: {x: 0.5, y: 0.12825175}
 --- !u!114 &426001625
 MonoBehaviour:
@@ -2824,7 +2824,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1549562559}
         m_TargetAssemblyTypeName: Download, Assembly-CSharp
-        m_MethodName: TestButton
+        m_MethodName: btnTestButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4743,7 +4743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 613, y: -254.66}
+  m_AnchoredPosition: {x: 640.99, y: -292.84}
   m_SizeDelta: {x: 182.8926, y: 64.812}
   m_Pivot: {x: 0.5, y: 0.12825175}
 --- !u!114 &882772618
@@ -5842,7 +5842,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'btnTest
+  m_Text: 'Barcode
 
 '
 --- !u!222 &1019900003
@@ -6031,7 +6031,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1549562559}
         m_TargetAssemblyTypeName: Download, Assembly-CSharp
-        m_MethodName: TestButton
+        m_MethodName: SaveFileButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11470,8 +11470,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 82.72117, y: -115}
-  m_SizeDelta: {x: 767.4628, y: 198.7203}
+  m_AnchoredPosition: {x: 80, y: -104.29901}
+  m_SizeDelta: {x: 767.4628, y: 170.1222}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2045307719
 MonoBehaviour:
