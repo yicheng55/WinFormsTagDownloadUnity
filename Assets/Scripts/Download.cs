@@ -482,14 +482,14 @@ public class Download : MonoBehaviour
                 .SetButtonColor(DialogButtonColor.Blue)
                 .OnClose(() => OnCloseFunction())
                 .Show();
-                inputFieldCo.text = "";
+                //inputFieldCo.text = "";
 
                 //取消動作
                 return 2;
             }
             btn_tabP1_Burn1_Click();
 
-            inputFieldCo.text = "";
+            //inputFieldCo.text = "";
 
             Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
             EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
