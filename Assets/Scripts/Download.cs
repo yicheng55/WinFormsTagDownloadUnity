@@ -126,7 +126,8 @@ public class Download : MonoBehaviour
         for (int i = 0; i < array.Length; i++)
         {
             inputList.Add(array[i].gameObject);
-            Debug.Log("InputField[] array= " + i);
+            Debug.LogFormat("InputField[{0}] array= {1}", i, array[i].gameObject);
+            //Debug.Log("Message :{0} ", e.Message);
         }
 
         if (inBarCode_active == 0)
@@ -193,7 +194,10 @@ public class Download : MonoBehaviour
                 //Positive order
                 GameObject next = NextInput(system.currentSelectedGameObject);
                 system.SetSelectedGameObject(next);
+                Debug.LogFormat("SetSelectedGameObject = {0}", next);
 
+                //GameObject next1 = GameObject.Find("inBarCode");
+                //Debug.LogFormat("GameObject.Find = {0}", next1);
 
                 //Debug.Log("inputList() : " + next.GetComponent(InputField));
                 ////Reverse order
@@ -268,9 +272,9 @@ public class Download : MonoBehaviour
                     .SetTitle("Message 1")
                     .SetMessage("JLinkConnectTest Fail111.... JLinkConnectTest.bat")
                     .SetButtonColor(DialogButtonColor.Blue)
-                    .OnClose(() => Debug.Log("Closed 1"))
+                    .OnClose(() => OnCloseFunction())
                     .Show();
-
+                Debug.Log("btn_tabP1_Burn1_Click Down load Fail.... ");
             }
             else
             {
@@ -278,7 +282,7 @@ public class Download : MonoBehaviour
                 ClassUtility.ExecuteCommand(textTest.text);
                 //toolStripStatusLabel1.Text = "Down load success......";
                 //statusStrip1.Update();
-                Debug.Log("Down load success.... JLinkConnectTest.bat");
+                Debug.Log("btn_tabP1_Burn1_Click Down load success.... JLinkConnectTest.bat");
             }
 
             //tbx_inBarCode.gameObject.GetComponent();
@@ -298,7 +302,7 @@ public class Download : MonoBehaviour
                 .SetButtonColor(DialogButtonColor.Blue)
                 .OnClose(() => Debug.Log("Closed 1"))
                 .Show();
-
+            Debug.Log("btn_tabP1_Burn1_Click IOException Exception Caught!");
             return;
         }
 
@@ -325,6 +329,7 @@ public class Download : MonoBehaviour
                 .OnClose(() => Debug.Log("Closed 1"))
                 .Show();
 
+            Debug.Log("btn_tabP1_Burn2_Click JLinkConnectTest Fail.... ");
             return;
         }
 
@@ -363,6 +368,9 @@ public class Download : MonoBehaviour
         //btn_tabP1_SaveFile_Click();
 
         btn_tabP1_Burn1_Click();
+
+
+        Debug.Log("btn_tabP1_Burn2_Click btn_tabP1_Burn1_Click end ");
 
     }
 
@@ -432,7 +440,21 @@ public class Download : MonoBehaviour
 
     }
 
+    private void OnCloseFunction()
+    {
+        Debug.Log("OnCloseFunction 1");
 
+        if (tbx_inBarCode.isActiveAndEnabled == true)
+        {
+            Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
+        }
+        else
+        {
+            Debug.Log("SetSelectedGameObject(GameObject.Find(inTagID4)");
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("inTagID4"));
+        }
+    }
     public int BarCodeFunction()
     {
         //byte[] TAG_ID = new byte[5];
@@ -458,14 +480,20 @@ public class Download : MonoBehaviour
                 .SetTitle("Message error!!!")
                 .SetMessage("BarCode data error!")
                 .SetButtonColor(DialogButtonColor.Blue)
-                .OnClose(() => Debug.Log("Closed 1"))
+                .OnClose(() => OnCloseFunction())
                 .Show();
                 inputFieldCo.text = "";
+
                 //取消動作
                 return 2;
             }
             btn_tabP1_Burn1_Click();
+
             inputFieldCo.text = "";
+
+            Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
+
             //inputFieldCo.onEndEdit
             //inputFieldCo.shouldActivateOnSelect(true);
             //inputFieldCo.Select(true);
@@ -521,12 +549,19 @@ public class Download : MonoBehaviour
             {
                 tbx_id[i].gameObject.SetActive(true);
             }
+
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("inTagID4"));
         }
         else
         {
             //tbx_inBarCode.text = "BarCode";
             GameObject.Find("btnBarCode").GetComponentInChildren<Text>().text = "Key ID";
+
             tbx_inBarCode.gameObject.SetActive(true);
+
+            GameObject.Find("inBarCode").GetComponentInChildren<Text>().text = "Scan ID";
+
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
 
             for (int i = 0; i < tbx_id.Length; i++)
             {
