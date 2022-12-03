@@ -34,7 +34,6 @@ public class Download : MonoBehaviour
 
     public GameObject dialogUI;
 
-
     int score, cnt, inBarCode_active = 0 ;
     int mDropWakeUpSecValue;
 
@@ -161,6 +160,7 @@ public class Download : MonoBehaviour
 
     void Update()
     {
+        int ret;
         //Detect when the up arrow key is pressed down
         if (Input.GetKeyDown(KeyCode.UpArrow))
             Debug.Log("Up Arrow key was pressed.");
@@ -181,6 +181,9 @@ public class Download : MonoBehaviour
         {
             Debug.Log("Enter key was released.");
             tbx_id4_TextChanged();
+            ret = BarCodeFunction();
+            Debug.Log("ret: " + ret);
+
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -374,6 +377,8 @@ public class Download : MonoBehaviour
         int ret ;
         ret = BarCodeFunction();
         Debug.Log("ret: " + ret);
+
+
         ////byte[] TAG_ID = new byte[5];
         ////if (inBarCode_active == 0)
         //if (tbx_inBarCode.isActiveAndEnabled == true)
@@ -459,7 +464,7 @@ public class Download : MonoBehaviour
                 //取消動作
                 return 2;
             }
-
+            btn_tabP1_Burn1_Click();
             inputFieldCo.text = "";
             //inputFieldCo.onEndEdit
             //inputFieldCo.shouldActivateOnSelect(true);
@@ -475,6 +480,7 @@ public class Download : MonoBehaviour
 
     public void btnTestButton()
     {
+
         // ClassUtility = new TClassUtility();
         byte[] TAG_ID = new byte[5];
         //string m_Message;
@@ -508,6 +514,8 @@ public class Download : MonoBehaviour
                 //Debug.Log(tbx_inBarCode.text.Substring(8, 2));
             }
 
+            //tbx_inBarCode.text = "Key ID";
+            GameObject.Find("btnBarCode").GetComponentInChildren<Text>().text = "BarCode";
             tbx_inBarCode.gameObject.SetActive(false);
             for (int i = 0; i < tbx_id.Length; i++)
             {
@@ -516,6 +524,8 @@ public class Download : MonoBehaviour
         }
         else
         {
+            //tbx_inBarCode.text = "BarCode";
+            GameObject.Find("btnBarCode").GetComponentInChildren<Text>().text = "Key ID";
             tbx_inBarCode.gameObject.SetActive(true);
 
             for (int i = 0; i < tbx_id.Length; i++)
@@ -528,6 +538,7 @@ public class Download : MonoBehaviour
 
         // tbx_inBarCode.isActiveAndEnabled  檢查是否 SetActive(true)
         Debug.Log("tbx_inBarCode.isActiveAndEnabled = " + tbx_inBarCode.isActiveAndEnabled);
+
 
         ////Reverse order
         //GameObject last = LastInput(system.currentSelectedGameObject);
