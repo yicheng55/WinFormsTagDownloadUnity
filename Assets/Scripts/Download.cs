@@ -35,7 +35,7 @@ public class Download : MonoBehaviour
     public GameObject dialogUI;
 
 
-    int score, cnt;
+    int score, cnt, inBarCode_active = 0 ;
     int mDropWakeUpSecValue;
 
 
@@ -85,6 +85,8 @@ public class Download : MonoBehaviour
     private const int NVM_BASE_TempRef_ADDRL = 0x3EE86;
     private const int NVM_BASE_TempRef_ADDRH = 0x3EE87;
 
+
+
     private TClassUtility ClassUtility;
 
     private List<GameObject> inputList;
@@ -125,8 +127,27 @@ public class Download : MonoBehaviour
         for (int i = 0; i < array.Length; i++)
         {
             inputList.Add(array[i].gameObject);
-            Debug.Log("array= " + i);
+            Debug.Log("InputField[] array= " + i);
         }
+
+        if (inBarCode_active == 0)
+        {
+            tbx_inBarCode.gameObject.SetActive(false);
+            for (int i = 0; i < tbx_id.Length; i++)
+            {
+                tbx_id[i].gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            tbx_inBarCode.gameObject.SetActive(true);
+
+            for (int i = 0; i < tbx_id.Length; i++)
+            {
+                tbx_id[i].gameObject.SetActive(false);
+            }
+        }
+        inBarCode_active = ~inBarCode_active;
 
         //system = EventSystem.current;
         //inputList = new List<GameObject>();
@@ -145,8 +166,8 @@ public class Download : MonoBehaviour
             Debug.Log("Up Arrow key was pressed.");
 
         //Detect when the up arrow key has been released
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-            Debug.Log("Up Arrow key was released.");
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+            Debug.Log("Down Arrow key was released.");
 
         //Detect when the up arrow key has been released
         if (Input.GetKeyUp(KeyCode.Tab))
@@ -169,6 +190,9 @@ public class Download : MonoBehaviour
                 //Positive order
                 GameObject next = NextInput(system.currentSelectedGameObject);
                 system.SetSelectedGameObject(next);
+
+
+                //Debug.Log("inputList() : " + next.GetComponent(InputField));
                 ////Reverse order
                 //GameObject last = LastInput(system.currentSelectedGameObject);
                 //system.SetSelectedGameObject(last);
@@ -230,6 +254,19 @@ public class Download : MonoBehaviour
     }
     public void ReturnButton()
     {
+
+        //if (inBarCode_active == 0)
+        if (tbx_inBarCode.isActiveAndEnabled == true)
+        {
+            GameObject inputFieldGo = GameObject.Find("inBarCode");
+            InputField inputFieldCo = inputFieldGo.GetComponent<InputField>();
+            Debug.Log(inputFieldCo.text);
+
+            inputFieldCo.text = "AAAA";
+            //inputFieldCo.shouldActivateOnSelect(true);
+            //inputFieldCo.Select(true);
+        }
+
         dialogUI.SetActive(true);
         DialogUI.Instance
         .SetTitle("Message 1")
@@ -271,6 +308,8 @@ public class Download : MonoBehaviour
                 //statusStrip1.Update();
                 Debug.Log("Down load success.... JLinkConnectTest.bat");
             }
+
+            //tbx_inBarCode.gameObject.GetComponent();
 
         }
         catch (IOException e)
@@ -370,23 +409,62 @@ public class Download : MonoBehaviour
         Debug.Log("WakeUpSec = " + mDropWakeUpSecValue);
         //tbx_inBarCode.text = "4555666666666";
 
-        Debug.Log(tbx_inBarCode.text.Length);
-        if (tbx_inBarCode.text.Length == 10)
+        //if (inBarCode_active == 0)
+        if (tbx_inBarCode.isActiveAndEnabled == true)
         {
-            TAG_ID[4] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(0, 2));      //tbx_id4.Text
-            TAG_ID[3] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(2, 2));      //tbx_id4.Text
-            TAG_ID[2] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(4, 2));      //tbx_id4.Text
-            TAG_ID[1] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(6, 2));      //tbx_id4.Text
-            TAG_ID[0] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(8, 2));      //tbx_id4.Text
-            Debug.Log(TAG_ID[0]);
+            Debug.Log(tbx_inBarCode.text.Length);
+            if (tbx_inBarCode.text.Length == 10)
+            {
+                TAG_ID[4] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(0, 2));      //tbx_id4.Text
+                TAG_ID[3] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(2, 2));      //tbx_id4.Text
+                TAG_ID[2] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(4, 2));      //tbx_id4.Text
+                TAG_ID[1] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(6, 2));      //tbx_id4.Text
+                TAG_ID[0] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(8, 2));      //tbx_id4.Text
+                Debug.Log(TAG_ID[0]);
+                Debug.Log(TAG_ID[1]);
+                Debug.Log(TAG_ID[2]);
+                Debug.Log(TAG_ID[3]);
+                Debug.Log(TAG_ID[4]);
 
-            //Debug.Log(tbx_inBarCode.text.Substring(0, 2));
-            //Debug.Log(tbx_inBarCode.text.Substring(2, 2));
-            //Debug.Log(tbx_inBarCode.text.Substring(4, 2));
-            //Debug.Log(tbx_inBarCode.text.Substring(6, 2));
-            //Debug.Log(tbx_inBarCode.text.Substring(8, 2));
+                //Debug.Log(tbx_inBarCode.text.Substring(0, 2));
+                //Debug.Log(tbx_inBarCode.text.Substring(2, 2));
+                //Debug.Log(tbx_inBarCode.text.Substring(4, 2));
+                //Debug.Log(tbx_inBarCode.text.Substring(6, 2));
+                //Debug.Log(tbx_inBarCode.text.Substring(8, 2));
+            }
+
+            tbx_inBarCode.gameObject.SetActive(false);
+            for (int i = 0; i < tbx_id.Length; i++)
+            {
+                tbx_id[i].gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            tbx_inBarCode.gameObject.SetActive(true);
+
+            for (int i = 0; i < tbx_id.Length; i++)
+            {
+                tbx_id[i].gameObject.SetActive(false);
+            }
         }
 
+        inBarCode_active = ~inBarCode_active;
+
+        // tbx_inBarCode.isActiveAndEnabled  檢查是否 SetActive(true)
+        Debug.Log("tbx_inBarCode.isActiveAndEnabled = " + tbx_inBarCode.isActiveAndEnabled);
+
+        //Reverse order
+        GameObject last = LastInput(system.currentSelectedGameObject);
+        system.SetSelectedGameObject(last);
+
+        //tbx_id[0].gameObject.SetActive(false);
+        //tbx_id[1].gameObject.SetActive(false);
+        //tbx_id[2].gameObject.SetActive(false);
+        //tbx_id[3].gameObject.SetActive(false);
+        //tbx_id[4].gameObject.SetActive(false);
+
+        //tbx_inBarCode.hideFlags = hideFlags;
 
         //Debug.Log("tbx_inBarCode = " + tbx_inBarCode.text);
         //TAG_ID[0] = ClassUtility.HexToByte("45");
