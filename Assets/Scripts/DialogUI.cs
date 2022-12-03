@@ -99,8 +99,15 @@ namespace EasyUI.Dialogs {
 			return Instance;
 		}
 
+		public DialogUI OnEnter(UnityAction action)
+		{
+			//dialog.OnClose = action;
+			return Instance;
+		}
+
+
 		//-------------------------------------
-		
+
 		public void Show ( ) {
 			dialogsQueue.Enqueue ( dialog );
 			//Reset Dialog

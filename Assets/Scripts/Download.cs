@@ -358,6 +358,8 @@ public class Download : MonoBehaviour
 
     public void TestButton()
     {
+        // ClassUtility = new TClassUtility();
+        byte[] TAG_ID = new byte[5];
         //string m_Message;
         Debug.Log("textTest: " + textTest.text);
 
@@ -368,7 +370,28 @@ public class Download : MonoBehaviour
         Debug.Log("WakeUpSec = " + mDropWakeUpSecValue);
         //tbx_inBarCode.text = "4555666666666";
 
-        // TAG_ID[1] = ClassUtility.HexToByte(tbx_id[1].text);      //tbx_id4.Text
+        Debug.Log(tbx_inBarCode.text.Length);
+        if (tbx_inBarCode.text.Length == 10)
+        {
+            TAG_ID[4] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(0, 2));      //tbx_id4.Text
+            TAG_ID[3] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(2, 2));      //tbx_id4.Text
+            TAG_ID[2] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(4, 2));      //tbx_id4.Text
+            TAG_ID[1] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(6, 2));      //tbx_id4.Text
+            TAG_ID[0] = ClassUtility.HexToByte(tbx_inBarCode.text.Substring(8, 2));      //tbx_id4.Text
+            Debug.Log(TAG_ID[0]);
+
+            //Debug.Log(tbx_inBarCode.text.Substring(0, 2));
+            //Debug.Log(tbx_inBarCode.text.Substring(2, 2));
+            //Debug.Log(tbx_inBarCode.text.Substring(4, 2));
+            //Debug.Log(tbx_inBarCode.text.Substring(6, 2));
+            //Debug.Log(tbx_inBarCode.text.Substring(8, 2));
+        }
+
+
+        //Debug.Log("tbx_inBarCode = " + tbx_inBarCode.text);
+        //TAG_ID[0] = ClassUtility.HexToByte("45");
+
+        // TAG_ID[1] = ClassUtility.HexToByte(tbx_id[1].text);      //tbx_id4.Text, tbx_inBarCode.text
         // ClassUtility.HexToByteArray(tbx_inBarCode.text);
         // Debug.Log( ClassUtility.(tbx_inBarCode.text));
         // tbx_inBarCode.text = mDropWakeUpSec.captionText.text;
@@ -376,9 +399,9 @@ public class Download : MonoBehaviour
         //Debug.Log("m_Message = " + m_Message);
 
         //mDropWakeUpSec.captionText.text = mDropWakeUpSec.options[score].text;
-        Debug.Log("mDropWakeUpSec = " + mDropWakeUpSec.captionText.text);
-        Debug.Log("mDropRptCnt = " + mDropRptCnt.captionText.text);
-        Debug.Log("mDropMaxCnt = " + mDropMaxCnt.captionText.text);
+        //Debug.Log("mDropWakeUpSec = " + mDropWakeUpSec.captionText.text);
+        //Debug.Log("mDropRptCnt = " + mDropRptCnt.captionText.text);
+        //Debug.Log("mDropMaxCnt = " + mDropMaxCnt.captionText.text);
 
         score++;
         tbx_id4_TextChanged();
@@ -411,7 +434,7 @@ public class Download : MonoBehaviour
             //MessageBox.Show(" Input TAG_ID warning!!! ", "Warning...", buttons);
         }
 
-        tbx_inBarCode.text = TAG_ID[0].ToString("X2") + TAG_ID[1].ToString("X2") + TAG_ID[2].ToString("X2") + TAG_ID[3].ToString("X2") + TAG_ID[4].ToString("X2");
+        //tbx_inBarCode.text = TAG_ID[0].ToString("X2") + TAG_ID[1].ToString("X2") + TAG_ID[2].ToString("X2") + TAG_ID[3].ToString("X2") + TAG_ID[4].ToString("X2");
         //TAG_ID[0] = ClassUtility.HexToByte(tbx_id0.Text);      //tbx_id4.Text
         //ByteArray[0] = ClassUtility.HexToByte(valueOne);      //tbx_id4.Text
         /*
