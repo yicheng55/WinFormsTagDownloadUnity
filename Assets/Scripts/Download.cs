@@ -11,6 +11,7 @@ using WinFormsTagDownload;
 using EasyUI.Dialogs;
 using UnityEngine.EventSystems;
 using System.Windows.Forms;
+using Button = UnityEngine.UI.Button;
 
 public class Download : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class Download : MonoBehaviour
     public Dropdown mDropWakeUpSec;
     public Dropdown mDropRptCnt;
     public Dropdown mDropMaxCnt;
+
+    public Button btnBurn0;
+    public Button btnBurn1;
+
 
 
     public GameObject dialogUI;
@@ -182,8 +187,23 @@ public class Download : MonoBehaviour
         {
             Debug.Log("Enter key was released.");
             tbx_id4_TextChanged();
-            ret = BarCodeFunction();
-            Debug.Log("ret: " + ret);
+
+            // GameObject next = NextInput(system.currentSelectedGameObject);
+            // system.SetSelectedGameObject(next);
+
+            GameObject currentSelected = (system.currentSelectedGameObject);
+            Debug.Log( currentSelected.name);
+
+            //避免重覆 KeyCode.Return 進入動作
+            if (String.Equals(currentSelected.name, "inBarCode"))
+            {
+                ret = BarCodeFunction();
+                Debug.Log("ret: " + ret);
+                GameObject next = NextInput(system.currentSelectedGameObject);
+                system.SetSelectedGameObject(next);
+                Debug.LogFormat("SetSelectedGameObject = {0}", next.name);
+            }
+
 
         }
 
@@ -482,8 +502,15 @@ public class Download : MonoBehaviour
                 .SetButtonColor(DialogButtonColor.Blue)
                 .OnClose(() => OnCloseFunction())
                 .Show();
-                //inputFieldCo.text = "";
 
+                ////GameObject next = NextInput(system.currentSelectedGameObject);
+                //GameObject currentSelected = (system.currentSelectedGameObject);
+                ////system.SetSelectedGameObject(next);
+                //Debug.LogFormat("SetSelectedGameObject = {0}", currentSelected);
+
+                //inputFieldCo.text = "";
+                //Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
+                //EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
                 //取消動作
                 return 2;
             }
@@ -543,6 +570,8 @@ public class Download : MonoBehaviour
             }
 
             //tbx_inBarCode.text = "Key ID";
+            btnBurn0.interactable = true;
+            btnBurn1.interactable = true;
             GameObject.Find("btnBarCode").GetComponentInChildren<Text>().text = "BarCode";
             tbx_inBarCode.gameObject.SetActive(false);
             for (int i = 0; i < tbx_id.Length; i++)
@@ -555,7 +584,14 @@ public class Download : MonoBehaviour
         else
         {
             //tbx_inBarCode.text = "BarCode";
-            GameObject.Find("btnBarCode").GetComponentInChildren<Text>().text = "Key ID";
+            //GameObject.Find("btnBarCode").GetComponentInChildren<Text>().text = "Key ID";
+            //GameObject.Find("btnBurn0")
+
+            //GameObject btnButton1 = GameObject.Find("btnBurn0");
+            //GetComponent<Button>().interactable = false;
+            btnBurn0.interactable = false;
+            btnBurn1.interactable = false;
+
 
             tbx_inBarCode.gameObject.SetActive(true);
 

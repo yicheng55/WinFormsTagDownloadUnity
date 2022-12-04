@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.754717, g: 0.65700734, b: 0.5304379, a: 1}
+  m_Color: {r: 0.8773585, g: 0.40970984, b: 0.40970984, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6907,11 +6907,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222424090}
   m_CullTransparentMesh: 1
---- !u!1 &1242133274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1816332754906888, guid: 6b78ab3879f6e4f4694f5b2ba700b5c4, type: 3}
-  m_PrefabInstance: {fileID: 1576647800}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1260899742
 GameObject:
   m_ObjectHideFlags: 0
@@ -9024,7 +9019,9 @@ MonoBehaviour:
   mDropWakeUpSec: {fileID: 25003402}
   mDropRptCnt: {fileID: 900092728}
   mDropMaxCnt: {fileID: 640676288}
-  dialogUI: {fileID: 1242133274}
+  btnBurn0: {fileID: 237730280}
+  btnBurn1: {fileID: 410598912}
+  dialogUI: {fileID: 426001623}
 --- !u!1 &1574465755
 GameObject:
   m_ObjectHideFlags: 0
