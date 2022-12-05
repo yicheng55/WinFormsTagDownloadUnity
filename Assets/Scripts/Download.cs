@@ -526,13 +526,15 @@ public class Download : MonoBehaviour
             }
             else
             {
-                dialogUI.SetActive(true);
-                DialogUI.Instance
-                .SetTitle("Message error!!!")
-                .SetMessage("BarCode data error!")
-                .SetButtonColor(DialogButtonColor.Blue)
-                .OnClose(() => OnCloseFunction())
-                .Show();
+                    dialogUI.SetActive(true);
+                    DialogUI.Instance
+                    .SetTitle("Message error!!!")
+                    .SetMessage("BarCode data error!")
+                    .SetButtonColor(DialogButtonColor.Blue)
+                    .OnClose(() => OnCloseFunction())
+                    .Show();
+
+                Debug.Log("BarCode Function data error ");
 
                 ////GameObject next = NextInput(system.currentSelectedGameObject);
                 //GameObject currentSelected = (system.currentSelectedGameObject);
