@@ -289,7 +289,16 @@ public class Download : MonoBehaviour
     }
 
 
-    public int btn_tabP1_Burn1_Click()
+    public void btn_tabP1_Burn1_Click()
+    {
+        tbx_id4_TextChanged();
+        btn_tabP1_Burn1_Function();
+        Debug.Log("SetSelectedGameObject(GameObject.Find(inTagID4)");
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("inTagID4"));
+        Debug.Log("btn_tabP1_Burn1_Function()  end .... ");
+    }
+
+    private int btn_tabP1_Burn1_Function()
     {
         int retcode;
 
@@ -404,10 +413,14 @@ public class Download : MonoBehaviour
 
         //btn_tabP1_SaveFile_Click();
 
-        btn_tabP1_Burn1_Click();
+        //btn_tabP1_Burn1_Click();
+        retcode = btn_tabP1_Burn1_Function();
 
+        Debug.Log("SetSelectedGameObject(GameObject.Find(inTagID4)");
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("inTagID4"));
+        Debug.Log("btn_tabP1_Burn1_Function()  end .... ");
 
-        Debug.Log("btn_tabP1_Burn2_Click btn_tabP1_Burn1_Click end ");
+        Debug.Log("btn_tabP1_Burn2_Click btn_tabP1_Burn1_Function end ");
 
     }
 
@@ -532,7 +545,7 @@ public class Download : MonoBehaviour
                 //取消動作
                 return 2;
             }
-            ret = btn_tabP1_Burn1_Click();
+            ret = btn_tabP1_Burn1_Function();
 
             //inputFieldCo.text = "";
 
