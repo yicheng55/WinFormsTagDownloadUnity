@@ -192,18 +192,34 @@ public class Download : MonoBehaviour
             // system.SetSelectedGameObject(next);
 
             GameObject currentSelected = (system.currentSelectedGameObject);
-            Debug.Log( currentSelected.name);
+            Debug.Log(currentSelected.name);
 
             //避免重覆 KeyCode.Return 進入動作
             if (String.Equals(currentSelected.name, "inBarCode"))
             {
                 ret = BarCodeFunction();
-                Debug.Log("ret: " + ret);
-                GameObject next = NextInput(system.currentSelectedGameObject);
-                system.SetSelectedGameObject(next);
-                Debug.LogFormat("SetSelectedGameObject = {0}", next.name);
+                Debug.Log("Update BarCodeFunction() ret: " + ret);
+                if(ret != 1 )
+                {
+                    GameObject next = NextInput(system.currentSelectedGameObject);
+                    system.SetSelectedGameObject(next);
+                    Debug.LogFormat("SetSelectedGameObject = {0}", next.name);
+                }
+                else
+                {
+                    //先轉移焦點後再轉回來選取狀態
+                    GameObject next = NextInput(system.currentSelectedGameObject);
+                    system.SetSelectedGameObject(next);
+                    Debug.LogFormat("SetSelectedGameObject = {0}", next.name);
+
+                    Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
+                }
+
             }
 
+            GameObject currentSelected1 = (system.currentSelectedGameObject);
+            Debug.Log(currentSelected1.name);
 
         }
 
@@ -518,8 +534,8 @@ public class Download : MonoBehaviour
 
             //inputFieldCo.text = "";
 
-            Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
-            EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
+            //Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
+            //EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
 
             //inputFieldCo.onEndEdit
             //inputFieldCo.shouldActivateOnSelect(true);
