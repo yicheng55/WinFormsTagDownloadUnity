@@ -289,7 +289,7 @@ public class Download : MonoBehaviour
     }
 
 
-    public void btn_tabP1_Burn1_Click()
+    public int btn_tabP1_Burn1_Click()
     {
         int retcode;
 
@@ -311,6 +311,7 @@ public class Download : MonoBehaviour
                     .OnClose(() => OnCloseFunction())
                     .Show();
                 Debug.Log("btn_tabP1_Burn1_Click Down load Fail.... ");
+                return 2;
             }
             else
             {
@@ -320,7 +321,7 @@ public class Download : MonoBehaviour
                 //statusStrip1.Update();
                 Debug.Log("btn_tabP1_Burn1_Click Down load success.... JLinkConnectTest.bat");
             }
-
+            return 1;
             //tbx_inBarCode.gameObject.GetComponent();
 
         }
@@ -339,7 +340,7 @@ public class Download : MonoBehaviour
                 .OnClose(() => Debug.Log("Closed 1"))
                 .Show();
             Debug.Log("btn_tabP1_Burn1_Click IOException Exception Caught!");
-            return;
+            return 2;
         }
 
     }
@@ -493,6 +494,7 @@ public class Download : MonoBehaviour
     }
     public int BarCodeFunction()
     {
+        int ret;
         //byte[] TAG_ID = new byte[5];
         //if (inBarCode_active == 0)
         if (tbx_inBarCode.isActiveAndEnabled == true)
@@ -530,7 +532,7 @@ public class Download : MonoBehaviour
                 //取消動作
                 return 2;
             }
-            btn_tabP1_Burn1_Click();
+            ret = btn_tabP1_Burn1_Click();
 
             //inputFieldCo.text = "";
 
@@ -541,7 +543,7 @@ public class Download : MonoBehaviour
             //inputFieldCo.shouldActivateOnSelect(true);
             //inputFieldCo.Select(true);
             //正常作用
-            return 1;
+            return ret;
         }
 
         //無作用
