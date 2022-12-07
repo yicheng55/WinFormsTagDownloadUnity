@@ -192,18 +192,34 @@ public class Download : MonoBehaviour
             // system.SetSelectedGameObject(next);
 
             GameObject currentSelected = (system.currentSelectedGameObject);
-            Debug.Log( currentSelected.name);
+            Debug.Log(currentSelected.name);
 
             //避免重覆 KeyCode.Return 進入動作
             if (String.Equals(currentSelected.name, "inBarCode"))
             {
                 ret = BarCodeFunction();
-                Debug.Log("ret: " + ret);
-                GameObject next = NextInput(system.currentSelectedGameObject);
-                system.SetSelectedGameObject(next);
-                Debug.LogFormat("SetSelectedGameObject = {0}", next.name);
+                Debug.Log("Update BarCodeFunction() ret: " + ret);
+                if(ret != 1 )
+                {
+                    GameObject next = NextInput(system.currentSelectedGameObject);
+                    system.SetSelectedGameObject(next);
+                    Debug.LogFormat("SetSelectedGameObject = {0}", next.name);
+                }
+                else
+                {
+                    //先轉移焦點後再轉回來選取狀態
+                    GameObject next = NextInput(system.currentSelectedGameObject);
+                    system.SetSelectedGameObject(next);
+                    Debug.LogFormat("SetSelectedGameObject = {0}", next.name);
+
+                    Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
+                }
+
             }
 
+            GameObject currentSelected1 = (system.currentSelectedGameObject);
+            Debug.Log(currentSelected1.name);
 
         }
 
@@ -275,6 +291,15 @@ public class Download : MonoBehaviour
 
     public void btn_tabP1_Burn1_Click()
     {
+        tbx_id4_TextChanged();
+        btn_tabP1_Burn1_Function();
+        Debug.Log("SetSelectedGameObject(GameObject.Find(inTagID4)");
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("inTagID4"));
+        Debug.Log("btn_tabP1_Burn1_Function()  end .... ");
+    }
+
+    private int btn_tabP1_Burn1_Function()
+    {
         int retcode;
 
         try
@@ -295,6 +320,7 @@ public class Download : MonoBehaviour
                     .OnClose(() => OnCloseFunction())
                     .Show();
                 Debug.Log("btn_tabP1_Burn1_Click Down load Fail.... ");
+                return 2;
             }
             else
             {
@@ -304,7 +330,7 @@ public class Download : MonoBehaviour
                 //statusStrip1.Update();
                 Debug.Log("btn_tabP1_Burn1_Click Down load success.... JLinkConnectTest.bat");
             }
-
+            return 1;
             //tbx_inBarCode.gameObject.GetComponent();
 
         }
@@ -323,7 +349,7 @@ public class Download : MonoBehaviour
                 .OnClose(() => Debug.Log("Closed 1"))
                 .Show();
             Debug.Log("btn_tabP1_Burn1_Click IOException Exception Caught!");
-            return;
+            return 2;
         }
 
     }
@@ -387,10 +413,14 @@ public class Download : MonoBehaviour
 
         //btn_tabP1_SaveFile_Click();
 
-        btn_tabP1_Burn1_Click();
+        //btn_tabP1_Burn1_Click();
+        retcode = btn_tabP1_Burn1_Function();
 
+        Debug.Log("SetSelectedGameObject(GameObject.Find(inTagID4)");
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("inTagID4"));
+        Debug.Log("btn_tabP1_Burn1_Function()  end .... ");
 
-        Debug.Log("btn_tabP1_Burn2_Click btn_tabP1_Burn1_Click end ");
+        Debug.Log("btn_tabP1_Burn2_Click btn_tabP1_Burn1_Function end ");
 
     }
 
@@ -477,6 +507,7 @@ public class Download : MonoBehaviour
     }
     public int BarCodeFunction()
     {
+        int ret;
         //byte[] TAG_ID = new byte[5];
         //if (inBarCode_active == 0)
         if (tbx_inBarCode.isActiveAndEnabled == true)
@@ -495,13 +526,15 @@ public class Download : MonoBehaviour
             }
             else
             {
-                dialogUI.SetActive(true);
-                DialogUI.Instance
-                .SetTitle("Message error!!!")
-                .SetMessage("BarCode data error!")
-                .SetButtonColor(DialogButtonColor.Blue)
-                .OnClose(() => OnCloseFunction())
-                .Show();
+                    dialogUI.SetActive(true);
+                    DialogUI.Instance
+                    .SetTitle("Message error!!!")
+                    .SetMessage("BarCode data error!")
+                    .SetButtonColor(DialogButtonColor.Blue)
+                    .OnClose(() => OnCloseFunction())
+                    .Show();
+
+                Debug.Log("BarCode Function data error ");
 
                 ////GameObject next = NextInput(system.currentSelectedGameObject);
                 //GameObject currentSelected = (system.currentSelectedGameObject);
@@ -514,18 +547,18 @@ public class Download : MonoBehaviour
                 //取消動作
                 return 2;
             }
-            btn_tabP1_Burn1_Click();
+            ret = btn_tabP1_Burn1_Function();
 
             //inputFieldCo.text = "";
 
-            Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
-            EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
+            //Debug.Log("SetSelectedGameObject(GameObject.Find(inBarCode)");
+            //EventSystem.current.SetSelectedGameObject(GameObject.Find("inBarCode"));
 
             //inputFieldCo.onEndEdit
             //inputFieldCo.shouldActivateOnSelect(true);
             //inputFieldCo.Select(true);
             //正常作用
-            return 1;
+            return ret;
         }
 
         //無作用
@@ -584,7 +617,7 @@ public class Download : MonoBehaviour
         else
         {
             //tbx_inBarCode.text = "BarCode";
-            //GameObject.Find("btnBarCode").GetComponentInChildren<Text>().text = "Key ID";
+            GameObject.Find("btnBarCode").GetComponentInChildren<Text>().text = "Key ID";
             //GameObject.Find("btnBurn0")
 
             //GameObject btnButton1 = GameObject.Find("btnBurn0");
